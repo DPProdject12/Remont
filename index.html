@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Krougen — Сервисный центр</title>
 
-  <!-- ИКОНКИ (Font Awesome) -->
+  <!-- ИКОНКИ -->
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         referrerpolicy="no-referrer" />
@@ -26,13 +26,7 @@
 
     *{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
-    body{
-      margin:0;
-      font-family: Arial, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.55;
-    }
+    body{ margin:0; font-family: Arial, sans-serif; background:var(--bg); color:var(--text); line-height:1.55; }
 
     /* ====== HEADER ====== */
     header{
@@ -40,640 +34,281 @@
                   linear-gradient(135deg, var(--black), var(--purple-dark));
       color:var(--white);
       padding:34px 18px 26px;
-      position:relative;
       overflow:hidden;
     }
-
-    .topbar{
-      max-width:1100px;
-      margin:0 auto;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      min-width:260px;
-    }
+    .topbar{ max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand{ display:flex; align-items:center; gap:14px; min-width:260px; }
 
     /* МЕСТО ПОД ЛОГОТИП */
     .logo-box{
-      width:52px;
-      height:52px;
-      border-radius:14px;
-      background:rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.18);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex:0 0 auto;
-      overflow:hidden;
+      width:52px; height:52px; border-radius:14px; background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.18); display:flex; align-items:center; justify-content:center;
+      overflow:hidden; flex:0 0 auto;
     }
-    .logo-box img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      display:block;
-    }
-    .logo-placeholder{
-      font-size:12px;
-      opacity:.9;
-      text-align:center;
-      padding:6px;
-      line-height:1.1;
-      font-weight:800;
-      letter-spacing:.5px;
-    }
+    .logo-box img{ width:100%; height:100%; object-fit:contain; display:block; }
+    .logo-placeholder{ font-size:12px; opacity:.9; text-align:center; padding:6px; line-height:1.1; font-weight:800; letter-spacing:.5px; }
 
-    .brand-title{
-      display:flex;
-      flex-direction:column;
-      gap:2px;
-    }
-    .brand-title strong{
-      font-size:20px;
-      letter-spacing:.6px;
-    }
-    .brand-title span{
-      font-size:12px;
-      opacity:.92;
-    }
+    .brand-title{ display:flex; flex-direction:column; gap:2px; }
+    .brand-title strong{ font-size:20px; letter-spacing:.6px; }
+    .brand-title span{ font-size:12px; opacity:.92; }
 
-    nav{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
+    nav{ display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end; }
     nav a{
-      color:rgba(255,255,255,.92);
-      text-decoration:none;
-      font-weight:700;
-      font-size:13px;
-      padding:10px 12px;
-      border-radius:12px;
-      transition:.2s;
+      color:rgba(255,255,255,.92); text-decoration:none; font-weight:700; font-size:13px;
+      padding:10px 12px; border-radius:12px; transition:.2s;
     }
-    nav a:hover{
-      background:rgba(255,255,255,.10);
-      color:#fff;
-    }
+    nav a:hover{ background:rgba(255,255,255,.10); color:#fff; }
 
     .hero{
-      max-width:1100px;
-      margin:18px auto 0;
-      padding:18px 0 8px;
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:18px;
-      align-items:center;
+      max-width:1100px; margin:18px auto 0; padding:18px 0 8px;
+      display:grid; grid-template-columns: 1.2fr .8fr; gap:18px; align-items:center;
     }
-
-    .hero h1{
-      margin:0;
-      font-size:34px;
-      letter-spacing:.3px;
-    }
-    .hero p{
-      margin:10px 0 0;
-      opacity:.92;
-      color:rgba(255,255,255,.92);
-    }
-
-    .hero-actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:16px;
-    }
+    .hero h1{ margin:0; font-size:34px; letter-spacing:.3px; }
+    .hero p{ margin:10px 0 0; opacity:.92; color:rgba(255,255,255,.92); }
+    .hero-actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top:16px; }
 
     .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:12px 16px;
-      border-radius:14px;
-      text-decoration:none;
-      font-weight:800;
-      transition: transform .18s ease, opacity .18s ease, box-shadow .18s ease, background .18s ease;
-      border:1px solid transparent;
-      user-select:none;
-      cursor:pointer;
+      display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:14px;
+      text-decoration:none; font-weight:800; transition: transform .18s ease, opacity .18s ease, box-shadow .18s ease, background .18s ease;
+      border:1px solid transparent; user-select:none; cursor:pointer;
     }
     .btn:active{ transform: translateY(1px); }
+    .btn.primary{ background:var(--purple); color:var(--white); box-shadow: 0 12px 26px rgba(123,44,255,.30); }
+    .btn.primary:hover{ background:var(--purple-dark); transform: translateY(-2px); box-shadow: 0 16px 34px rgba(123,44,255,.36); }
+    .btn.dark{ background:rgba(0,0,0,.35); color:var(--white); border-color:rgba(255,255,255,.18); }
+    .btn.dark:hover{ transform: translateY(-2px); opacity:.95; }
+    .btn.ghost{ background:transparent; color:var(--text); border:1px solid rgba(0,0,0,.12); }
+    .btn.ghost:hover{ background:rgba(0,0,0,.04); transform: translateY(-1px); }
 
-    .btn.primary{
-      background:var(--purple);
-      color:var(--white);
-      box-shadow: 0 12px 26px rgba(123,44,255,.30);
-    }
-    .btn.primary:hover{
-      background:var(--purple-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 16px 34px rgba(123,44,255,.36);
-    }
-
-    .btn.dark{
-      background:rgba(0,0,0,.35);
-      color:var(--white);
-      border-color:rgba(255,255,255,.18);
-    }
-    .btn.dark:hover{
-      transform: translateY(-2px);
-      opacity:.95;
-    }
-
-    .btn.ghost{
-      background:transparent;
-      color:var(--text);
-      border:1px solid rgba(0,0,0,.12);
-    }
-    .btn.ghost:hover{
-      background:rgba(0,0,0,.04);
-      transform: translateY(-1px);
-    }
-
-    .hero-badges{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      justify-content:center;
-      align-items:flex-end;
-    }
+    .hero-badges{ display:flex; flex-direction:column; gap:10px; align-items:flex-end; }
     .badge{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:12px 14px;
-      border-radius:16px;
-      background:rgba(255,255,255,.10);
-      border:1px solid rgba(255,255,255,.18);
-      width: fit-content;
-      max-width: 340px;
-      backdrop-filter: blur(6px);
+      display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:16px;
+      background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.18); backdrop-filter: blur(6px);
+      width:fit-content; max-width:340px;
     }
     .badge i{ color:#fff; opacity:.95; }
-    .badge div{
-      display:flex;
-      flex-direction:column;
-      gap:2px;
-      font-size:13px;
-    }
+    .badge div{ display:flex; flex-direction:column; gap:2px; font-size:13px; }
     .badge small{ opacity:.92; }
 
     /* ====== LAYOUT ====== */
-    .container{
-      max-width:1100px;
-      margin:0 auto;
-      padding:34px 18px 40px;
-    }
+    .container{ max-width:1100px; margin:0 auto; padding:34px 18px 40px; }
+    h2{ margin:0 0 14px; color:var(--purple-dark); letter-spacing:.2px; }
+    .card{ background:var(--white); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow); border:var(--border); }
 
-    h2{
-      margin:0 0 14px;
-      color:var(--purple-dark);
-      letter-spacing:.2px;
-    }
-
-    .card{
-      background:var(--white);
-      border-radius:var(--radius);
-      padding:22px;
-      box-shadow:var(--shadow);
-      border:var(--border);
-    }
+    /* ====== SECTION ANIMATIONS ====== */
+    .fade-up{ opacity:0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
+    .fade-up.reveal{ opacity:1; transform: translateY(0); }
 
     /* ====== SERVICES GRID ====== */
-    .services{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:18px;
-    }
-
+    .services{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
     .service-card{
-      background:var(--white);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      border:var(--border);
-      overflow:hidden;
-      transform: translateY(10px);
-      opacity:0;
-      transition: transform .25s ease, box-shadow .25s ease, opacity .4s ease;
+      background:var(--white); border-radius:var(--radius); box-shadow:var(--shadow); border:var(--border); overflow:hidden;
+      transform: translateY(10px); opacity:0; transition: transform .25s ease, box-shadow .25s ease, opacity .4s ease;
     }
-    .service-card.reveal{
-      transform: translateY(0);
-      opacity:1;
-    }
-    .service-card:hover{
-      transform: translateY(-4px);
-      box-shadow: 0 16px 36px rgba(0,0,0,.18);
+    .service-card.reveal{ transform: translateY(0); opacity:1; }
+    .service-card:hover{ transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0,0,0,.18); }
+
+    .service-media{ position:relative; width:100%; height:150px; background:linear-gradient(135deg, rgba(123,44,255,.20), rgba(0,0,0,.12)); overflow:hidden; }
+    .service-media img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .media-overlay{ position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.38), rgba(0,0,0,0)); }
+    .media-label{
+      position:absolute; bottom:10px; left:12px; display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px; border-radius:999px; background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.16);
+      color:#fff; font-weight:800; font-size:12px; backdrop-filter: blur(6px);
     }
 
-    .service-media{
-      position:relative;
-      width:100%;
-      height:150px;
-      background:linear-gradient(135deg, rgba(123,44,255,.20), rgba(0,0,0,.12));
+    .service-body{ padding:16px 16px 18px; }
+    .service-title{ display:flex; align-items:flex-start; gap:10px; margin-bottom:8px; }
+    .service-title i{ color:var(--purple); margin-top:2px; font-size:18px; width:22px; text-align:center; }
+    .service-title h3{ margin:0; font-size:1.05em; line-height:1.25; }
+    .service-body p{ margin:0 0 10px; color:var(--muted); font-size:.94em; }
+    .price{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:10px; padding-top:10px; border-top:1px dashed rgba(0,0,0,.12); }
+    .price strong{ color:var(--purple-dark); font-size:1.06em; }
+    .tag{ font-size:12px; font-weight:800; color:#111; background:rgba(123,44,255,.10); border:1px solid rgba(123,44,255,.20); padding:6px 10px; border-radius:999px; white-space:nowrap; }
+
+    /* ===== WHY ===== */
+    .why-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin-top:12px; }
+    .mini-card{ border:1px solid rgba(0,0,0,.08); border-radius:16px; padding:16px; box-shadow:0 10px 28px rgba(0,0,0,.08); background:#fff; transition:.18s; }
+    .mini-card:hover{ transform: translateY(-2px); box-shadow:0 14px 34px rgba(0,0,0,.12); }
+
+    /* ===== CALCULATOR ===== */
+    .calc-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .calc-result{
+      margin-top:12px;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid rgba(123,44,255,.22);
+      background: rgba(123,44,255,.08);
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .calc-result strong{ color:var(--purple-dark); font-size:16px; }
+    .calc-note{ color:var(--muted); font-size:12px; margin-top:6px; }
+    @media (max-width:760px){
+      .calc-grid{ grid-template-columns:1fr; }
+    }
+
+    /* ===== FAQ ===== */
+    .faq{
+      margin-top:8px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    details.faq-item{
+      border:1px solid rgba(0,0,0,.10);
+      border-radius:16px;
+      background:#fff;
+      box-shadow:0 10px 28px rgba(0,0,0,.06);
+      overflow:hidden;
+    }
+    details.faq-item summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 14px;
       display:flex;
       align-items:center;
-      justify-content:center;
-      overflow:hidden;
+      justify-content:space-between;
+      gap:12px;
+      font-weight:900;
     }
-    .service-media img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
+    details.faq-item summary::-webkit-details-marker{ display:none; }
+    .faq-body{ padding:0 14px 14px; color:var(--muted); }
+    .faq-icon{
+      width:36px; height:36px; border-radius:12px;
+      display:flex; align-items:center; justify-content:center;
+      background: rgba(123,44,255,.10);
+      border:1px solid rgba(123,44,255,.20);
+      color:var(--purple-dark);
+      flex:0 0 auto;
     }
-    .media-overlay{
-      position:absolute;
-      inset:0;
-      background:linear-gradient(to top, rgba(0,0,0,.38), rgba(0,0,0,0));
-      pointer-events:none;
+
+    /* ===== STATUS CHECK ===== */
+    .status-wrap{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:10px;
     }
-    .media-label{
-      position:absolute;
-      bottom:10px;
-      left:12px;
+    .status-output{
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid rgba(0,0,0,.10);
+      background:#fff;
+      display:none;
+    }
+    .status-output.show{ display:block; }
+    .pill{
       display:inline-flex;
       align-items:center;
       gap:8px;
-      padding:8px 10px;
+      padding:8px 12px;
       border-radius:999px;
-      background:rgba(0,0,0,.45);
-      border:1px solid rgba(255,255,255,.16);
-      color:#fff;
-      font-weight:800;
+      font-weight:900;
       font-size:12px;
-      backdrop-filter: blur(6px);
+      border:1px solid rgba(0,0,0,.12);
     }
+    .pill.work{ background:rgba(123,44,255,.10); border-color:rgba(123,44,255,.25); color:var(--purple-dark); }
+    .pill.ready{ background:rgba(0,0,0,.06); border-color:rgba(0,0,0,.14); color:#111; }
+    .pill.wait{ background:rgba(255, 180, 0, .16); border-color:rgba(255, 180, 0, .30); color:#6a4600; }
 
-    .service-body{
-      padding:16px 16px 18px;
-    }
-    .service-title{
-      display:flex;
-      align-items:flex-start;
-      gap:10px;
-      margin-bottom:8px;
-    }
-    .service-title i{
-      color:var(--purple);
-      margin-top:2px;
-      font-size:18px;
-      width:22px;
-      text-align:center;
-    }
-    .service-title h3{
-      margin:0;
-      font-size:1.05em;
-      line-height:1.25;
-    }
-    .service-body p{
-      margin:0 0 10px;
-      color:var(--muted);
-      font-size:.94em;
-    }
-    .price{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-top:10px;
-      padding-top:10px;
-      border-top:1px dashed rgba(0,0,0,.12);
-    }
-    .price strong{
-      color:var(--purple-dark);
-      font-size:1.06em;
-    }
-    .tag{
-      font-size:12px;
-      font-weight:800;
-      color:#111;
-      background:rgba(123,44,255,.10);
-      border:1px solid rgba(123,44,255,.20);
-      padding:6px 10px;
-      border-radius:999px;
-      white-space:nowrap;
-    }
-
-    /* ====== WHY ====== */
-    .why-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:16px;
-      margin-top:12px;
-    }
-    .mini-card{
-      border:1px solid rgba(0,0,0,.08);
-      border-radius:16px;
-      padding:16px;
-      box-shadow:0 10px 28px rgba(0,0,0,.08);
-      background:#fff;
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
-    .mini-card:hover{
-      transform: translateY(-2px);
-      box-shadow:0 14px 34px rgba(0,0,0,.12);
-    }
-
-    /* ===== REVIEWS (rating + slider) ===== */
-    .reviews-head{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
-    }
-    .rating-row{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin-top:10px;
-      flex-wrap:wrap;
-    }
-    .rating-stars{
-      display:flex;
-      gap:4px;
-      color:var(--purple);
-      font-size:16px;
-      min-height:20px;
-    }
-    .rating-text{
-      display:flex;
-      flex-direction:column;
-      gap:2px;
-    }
-    .rating-score{
-      font-size:18px;
-      color:var(--purple-dark);
-    }
-    .rating-sub{
-      font-size:12px;
-      color:var(--muted);
-    }
-    .reviews-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:flex-start;
-    }
+    /* ===== REVIEWS ===== */
+    .reviews-head{ display:flex; align-items:flex-start; justify-content:space-between; gap:14px; flex-wrap:wrap; }
+    .rating-row{ display:flex; align-items:center; gap:12px; margin-top:10px; flex-wrap:wrap; }
+    .rating-stars{ display:flex; gap:4px; color:var(--purple); font-size:16px; min-height:20px; }
+    .rating-text{ display:flex; flex-direction:column; gap:2px; }
+    .rating-score{ font-size:18px; color:var(--purple-dark); }
+    .rating-sub{ font-size:12px; color:var(--muted); }
+    .reviews-actions{ display:flex; gap:10px; flex-wrap:wrap; align-items:flex-start; }
 
     .reviews-slider{
-      margin-top:16px;
-      position:relative;
-      display:grid;
-      grid-template-columns: 42px 1fr 42px;
-      gap:10px;
-      align-items:center;
+      margin-top:16px; position:relative; display:grid;
+      grid-template-columns: 42px 1fr 42px; gap:10px; align-items:center;
     }
-    .reviews-viewport{
-      overflow:hidden;
-      border-radius:16px;
-    }
-    .reviews-track{
-      display:flex;
-      gap:14px;
-      transition: transform .35s ease;
-      will-change: transform;
-    }
-    .review-slide{
-      min-width:100%;
-      background:#fff;
-      border:var(--border);
-      border-radius:16px;
-      padding:16px;
-      box-shadow:0 10px 28px rgba(0,0,0,.08);
-    }
-    .review-top{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      align-items:flex-start;
-    }
-    .review-score{
-      color:var(--purple-dark);
-      font-weight:900;
-    }
-    .review-slide p{
-      margin:10px 0 0;
-      color:var(--muted);
-    }
+    .reviews-viewport{ overflow:hidden; border-radius:16px; }
+    .reviews-track{ display:flex; gap:14px; transition: transform .35s ease; will-change: transform; }
+    .review-slide{ min-width:100%; background:#fff; border:var(--border); border-radius:16px; padding:16px; box-shadow:0 10px 28px rgba(0,0,0,.08); }
+    .review-top{ display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
+    .review-score{ color:var(--purple-dark); font-weight:900; }
+    .review-slide p{ margin:10px 0 0; color:var(--muted); }
 
     .slider-btn{
-      width:42px;
-      height:42px;
-      border-radius:14px;
-      border:1px solid rgba(0,0,0,.12);
-      background:#fff;
-      cursor:pointer;
-      transition: transform .15s ease, background .15s ease;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      width:42px; height:42px; border-radius:14px; border:1px solid rgba(0,0,0,.12); background:#fff;
+      cursor:pointer; transition:.15s; display:flex; align-items:center; justify-content:center;
     }
     .slider-btn:hover{ background:rgba(0,0,0,.04); transform: translateY(-1px); }
     .slider-btn:active{ transform: translateY(0); }
 
-    .dots{
-      margin-top:12px;
-      display:flex;
-      gap:8px;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-    .dot{
-      width:10px;
-      height:10px;
-      border-radius:999px;
-      border:1px solid rgba(0,0,0,.16);
-      background:rgba(123,44,255,.12);
-      cursor:pointer;
-      transition: transform .15s ease, background .15s ease;
-    }
-    .dot.active{
-      background:rgba(123,44,255,.75);
-      transform: scale(1.05);
-    }
+    .dots{ margin-top:12px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+    .dot{ width:10px; height:10px; border-radius:999px; border:1px solid rgba(0,0,0,.16); background:rgba(123,44,255,.12); cursor:pointer; transition:.15s; }
+    .dot.active{ background:rgba(123,44,255,.75); transform: scale(1.05); }
 
     @media (max-width:640px){
       .reviews-slider{ grid-template-columns: 1fr; }
       .slider-btn{ display:none; }
     }
 
-    /* ====== CONTACTS ====== */
-    .contact-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
-    }
-    .kv{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      margin-top:6px;
-    }
-    .kv .row{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-    }
-    .kv i{
-      color:var(--purple);
-      font-size:16px;
-      margin-top:3px;
-      width:18px;
-      text-align:center;
-    }
+    /* ===== CONTACTS ===== */
+    .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .kv{ display:flex; flex-direction:column; gap:10px; margin-top:6px; }
+    .kv .row{ display:flex; gap:12px; align-items:flex-start; }
+    .kv i{ color:var(--purple); font-size:16px; margin-top:3px; width:18px; text-align:center; }
 
-    .map iframe{
-      width:100%;
-      height:270px;
-      border:0;
-      border-radius:14px;
-    }
+    .map iframe{ width:100%; height:270px; border:0; border-radius:14px; }
 
-    footer{
-      background:var(--black);
-      color:var(--white);
-      text-align:center;
-      padding:18px 10px;
-      font-size:.92em;
-    }
+    footer{ background:var(--black); color:var(--white); text-align:center; padding:18px 10px; font-size:.92em; }
 
-    /* ====== SECTION ANIMATIONS ====== */
-    .fade-up{
-      opacity:0;
-      transform: translateY(12px);
-      transition: opacity .5s ease, transform .5s ease;
-    }
-    .fade-up.reveal{
-      opacity:1;
-      transform: translateY(0);
-    }
-
-    /* ====== MODAL ====== */
-    .modal-overlay{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.60);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-      z-index:9999;
-    }
+    /* ===== MODAL ===== */
+    .modal-overlay{ position:fixed; inset:0; background:rgba(0,0,0,.60); display:none; align-items:center; justify-content:center; padding:18px; z-index:9999; }
     .modal-overlay.show{ display:flex; }
-
     .modal{
-      width:min(560px, 100%);
-      background:var(--white);
-      border-radius:22px;
-      box-shadow:0 24px 60px rgba(0,0,0,.30);
-      border:1px solid rgba(0,0,0,.10);
-      overflow:hidden;
-      transform: translateY(10px) scale(.98);
-      opacity:0;
-      transition: transform .18s ease, opacity .18s ease;
+      width:min(560px, 100%); background:var(--white); border-radius:22px;
+      box-shadow:0 24px 60px rgba(0,0,0,.30); border:1px solid rgba(0,0,0,.10);
+      overflow:hidden; transform: translateY(10px) scale(.98); opacity:0; transition:.18s;
     }
-    .modal-overlay.show .modal{
-      transform: translateY(0) scale(1);
-      opacity:1;
-    }
+    .modal-overlay.show .modal{ transform: translateY(0) scale(1); opacity:1; }
 
     .modal-head{
       background:linear-gradient(135deg, rgba(123,44,255,.18), rgba(0,0,0,.05));
-      padding:18px 18px 14px;
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:14px;
+      padding:18px 18px 14px; display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
     }
-    .modal-head h3{
-      margin:0;
-      font-size:18px;
-      color:var(--black);
-    }
-    .modal-head p{
-      margin:6px 0 0;
-      color:var(--muted);
-      font-size:13px;
-    }
-    .modal-close{
-      background:transparent;
-      border:0;
-      cursor:pointer;
-      font-size:18px;
-      padding:8px 10px;
-      border-radius:12px;
-      transition:.15s;
-      color:#222;
-    }
+    .modal-head h3{ margin:0; font-size:18px; color:var(--black); }
+    .modal-head p{ margin:6px 0 0; color:var(--muted); font-size:13px; }
+
+    .modal-close{ background:transparent; border:0; cursor:pointer; font-size:18px; padding:8px 10px; border-radius:12px; transition:.15s; color:#222; }
     .modal-close:hover{ background:rgba(0,0,0,.06); }
 
     .modal-body{ padding:16px 18px 18px; }
 
-    .form-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
-
-    label{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      font-size:12px;
-      font-weight:800;
-      color:#222;
-    }
-
+    .form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    label{ display:flex; flex-direction:column; gap:6px; font-size:12px; font-weight:800; color:#222; }
     input, select, textarea{
-      width:100%;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid rgba(0,0,0,.14);
-      outline:none;
-      font-size:14px;
-      transition:border-color .15s ease, box-shadow .15s ease;
-      background:#fff;
+      width:100%; padding:12px 12px; border-radius:14px; border:1px solid rgba(0,0,0,.14);
+      outline:none; font-size:14px; transition:.15s; background:#fff;
     }
     textarea{ min-height:100px; resize:vertical; }
+    input:focus, select:focus, textarea:focus{ border-color: rgba(123,44,255,.55); box-shadow: 0 0 0 4px rgba(123,44,255,.14); }
 
-    input:focus, select:focus, textarea:focus{
-      border-color: rgba(123,44,255,.55);
-      box-shadow: 0 0 0 4px rgba(123,44,255,.14);
-    }
-
-    .modal-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:14px;
-      align-items:center;
-      justify-content:flex-end;
-    }
+    .modal-actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; align-items:center; justify-content:flex-end; }
 
     .success{
-      display:none;
-      margin-top:12px;
-      padding:12px 12px;
-      border-radius:14px;
-      background:rgba(123,44,255,.10);
-      border:1px solid rgba(123,44,255,.22);
-      color:#1a1130;
-      font-weight:900;
-      font-size:13px;
+      display:none; margin-top:12px; padding:12px 12px; border-radius:14px;
+      background:rgba(123,44,255,.10); border:1px solid rgba(123,44,255,.22); color:#1a1130; font-weight:900; font-size:13px;
     }
     .success.show{ display:block; }
 
     body.modal-open{ overflow:hidden; }
 
-    /* ====== RESPONSIVE ====== */
     @media (max-width:860px){
       .hero{ grid-template-columns:1fr; }
       .hero-badges{ align-items:flex-start; }
@@ -696,9 +331,7 @@
     <div class="brand">
       <div class="logo-box" title="Логотип">
         <div class="logo-placeholder">LOGO</div>
-        <!-- Когда будет файл:
-        <img src="images/logo.png" alt="Krougen">
-        -->
+        <!-- <img src="images/logo.png" alt="Krougen"> -->
       </div>
 
       <div class="brand-title">
@@ -710,7 +343,10 @@
     <nav>
       <a href="#about"><i class="fa-solid fa-circle-info"></i> О нас</a>
       <a href="#why"><i class="fa-solid fa-bolt"></i> Почему мы</a>
+      <a href="#calculator"><i class="fa-solid fa-calculator"></i> Калькулятор</a>
       <a href="#services"><i class="fa-solid fa-screwdriver-wrench"></i> Услуги</a>
+      <a href="#status"><i class="fa-solid fa-clipboard-check"></i> Статус</a>
+      <a href="#faq"><i class="fa-solid fa-circle-question"></i> FAQ</a>
       <a href="#reviews"><i class="fa-solid fa-star"></i> Отзывы</a>
       <a href="#contacts"><i class="fa-solid fa-phone"></i> Контакты</a>
       <a href="#map"><i class="fa-solid fa-location-dot"></i> Карта</a>
@@ -735,26 +371,17 @@
     <div class="hero-badges">
       <div class="badge">
         <i class="fa-solid fa-clock"></i>
-        <div>
-          <strong>10:00–20:00</strong>
-          <small>Вт–Вс, Пн — выходной</small>
-        </div>
+        <div><strong>10:00–20:00</strong><small>Вт–Вс, Пн — выходной</small></div>
       </div>
 
       <div class="badge">
         <i class="fa-solid fa-location-dot"></i>
-        <div>
-          <strong>Горячеводский</strong>
-          <small>ул. 7-я Линия, 112</small>
-        </div>
+        <div><strong>Горячеводский</strong><small>ул. 7-я Линия, 112</small></div>
       </div>
 
       <div class="badge">
         <i class="fa-solid fa-shield-halved"></i>
-        <div>
-          <strong>Гарантия</strong>
-          <small>на выполненные работы</small>
-        </div>
+        <div><strong>Гарантия</strong><small>на выполненные работы</small></div>
       </div>
     </div>
   </div>
@@ -816,6 +443,68 @@
     </div>
   </section>
 
+  <!-- ===== Мини-калькулятор ===== -->
+  <section id="calculator" class="card fade-up" style="margin-top:26px;">
+    <h2>Мини-калькулятор стоимости</h2>
+    <div style="color:var(--muted);">
+      Выберите тип техники и проблему — покажем примерную вилку цены и предложим оставить заявку.
+    </div>
+
+    <div class="calc-grid">
+      <label>
+        Тип техники
+        <select id="calcDevice" required>
+          <option value="" selected disabled>Выберите…</option>
+          <option value="ПК">ПК</option>
+          <option value="Ноутбук">Ноутбук</option>
+          <option value="Принтер / МФУ">Принтер / МФУ</option>
+          <option value="Монитор">Монитор</option>
+          <option value="Периферия">Периферия</option>
+          <option value="Другое">Другое</option>
+        </select>
+      </label>
+
+      <label>
+        Проблема / услуга
+        <select id="calcIssue" required>
+          <option value="" selected disabled>Выберите…</option>
+          <option value="diagnostics">Диагностика</option>
+          <option value="cooling_clean">Чистка системы охлаждения</option>
+          <option value="paste">Замена термопасты</option>
+          <option value="drivers">Установка драйверов</option>
+          <option value="antivirus">Установка антивируса</option>
+          <option value="apps">Установка программ</option>
+          <option value="virus_clean">Удаление вирусов / чистка</option>
+          <option value="os">Установка Windows</option>
+          <option value="ssd_upgrade">Ускорение (SSD вместо HDD)</option>
+          <option value="hdd_replace">Замена диска</option>
+          <option value="ram">Увеличение ОЗУ</option>
+          <option value="gpu">Замена видеокарты</option>
+          <option value="cpu">Замена процессора</option>
+          <option value="psu">Замена блока питания</option>
+          <option value="mb">Замена материнской платы</option>
+          <option value="case">Замена корпуса</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="calc-result" id="calcResult">
+      <div>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <i class="fa-solid fa-wallet" style="color:var(--purple-dark);"></i>
+          <strong id="calcPrice">Выберите параметры</strong>
+        </div>
+        <div class="calc-note" id="calcNote">
+          Цена ориентировочная и может зависеть от модели и сложности. Точную стоимость скажем после диагностики.
+        </div>
+      </div>
+
+      <button class="btn primary" type="button" id="calcToRequest" disabled>
+        <i class="fa-solid fa-pen-to-square"></i> Оставить заявку
+      </button>
+    </div>
+  </section>
+
   <section id="services" style="margin-top:26px;" class="fade-up">
     <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
       <h2 style="margin:0;">Услуги и цены</h2>
@@ -825,6 +514,7 @@
     </div>
 
     <div class="services" style="margin-top:16px;">
+      <!-- (Услуги оставил как ранее — можно не трогать картинки, ты подружишь позже) -->
 
       <article class="service-card">
         <div class="service-media">
@@ -1037,12 +727,103 @@
     </div>
   </section>
 
-  <!-- ====== REVIEWS (from reviews.json) ====== -->
+  <!-- ===== Статус заявки ===== -->
+  <section id="status" class="card fade-up" style="margin-top:26px;">
+    <h2>Проверка статуса ремонта</h2>
+    <div style="color:var(--muted);">
+      Введите номер заявки, который вы получили после отправки — покажем статус: <b>в работе / готово / ожидаем запчасть</b>.
+    </div>
+
+    <div class="status-wrap">
+      <input id="statusInput" type="text" placeholder="Например: KR-2025-000123" style="max-width:320px;" />
+      <button class="btn primary" id="statusCheckBtn" type="button">
+        <i class="fa-solid fa-magnifying-glass"></i> Проверить
+      </button>
+      <button class="btn ghost" id="statusFillLastBtn" type="button">
+        <i class="fa-solid fa-clock-rotate-left"></i> Подставить последнюю
+      </button>
+    </div>
+
+    <div class="status-output" id="statusOutput"></div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq" class="card fade-up" style="margin-top:26px;">
+    <h2>Частые вопросы</h2>
+
+    <div class="faq">
+      <details class="faq-item">
+        <summary>
+          <span style="display:flex; align-items:center; gap:12px;">
+            <span class="faq-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+            Сколько стоит диагностика и когда она бесплатная?
+          </span>
+          <i class="fa-solid fa-chevron-down" style="color:var(--muted);"></i>
+        </summary>
+        <div class="faq-body">
+          Диагностика — от <b>500 ₽</b>. Если ваш ПК/ноутбук будет ремонтироваться у нас — диагностика <b>бесплатная</b>.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span style="display:flex; align-items:center; gap:12px;">
+            <span class="faq-icon"><i class="fa-solid fa-stopwatch"></i></span>
+            Какие сроки ремонта?
+          </span>
+          <i class="fa-solid fa-chevron-down" style="color:var(--muted);"></i>
+        </summary>
+        <div class="faq-body">
+          Зависит от неисправности и наличия запчастей. Простые работы часто делаем в тот же день, сложные — по согласованию.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span style="display:flex; align-items:center; gap:12px;">
+            <span class="faq-icon"><i class="fa-solid fa-shield-halved"></i></span>
+            Есть ли гарантия на ремонт?
+          </span>
+          <i class="fa-solid fa-chevron-down" style="color:var(--muted);"></i>
+        </summary>
+        <div class="faq-body">
+          Да, предоставляем гарантию на выполненные работы и заменённые комплектующие (условия зависят от вида работ).
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span style="display:flex; align-items:center; gap:12px;">
+            <span class="faq-icon"><i class="fa-solid fa-computer"></i></span>
+            Делаете апгрейд (SSD, ОЗУ, видеокарта)?
+          </span>
+          <i class="fa-solid fa-chevron-down" style="color:var(--muted);"></i>
+        </summary>
+        <div class="faq-body">
+          Да. Подбираем комплектующие под задачу (офис/игры) и выполняем установку, настройку и тестирование.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span style="display:flex; align-items:center; gap:12px;">
+            <span class="faq-icon"><i class="fa-solid fa-virus-slash"></i></span>
+            Можно ли почистить от вирусов и ускорить ПК?
+          </span>
+          <i class="fa-solid fa-chevron-down" style="color:var(--muted);"></i>
+        </summary>
+        <div class="faq-body">
+          Да. Делаем чистку от вредоносных программ, оптимизацию и при необходимости предлагаем SSD-апгрейд.
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ===== REVIEWS (как у тебя было, с дефолтными ссылками) ===== -->
   <section id="reviews" class="card fade-up" style="margin-top:26px;">
     <div class="reviews-head">
       <div>
         <h2 style="margin:0;">Отзывы клиентов</h2>
-
         <div class="rating-row">
           <div class="rating-stars" id="ratingStars" aria-label="Общая оценка"></div>
           <div class="rating-text">
@@ -1053,20 +834,28 @@
       </div>
 
       <div class="reviews-actions">
-        <a class="btn ghost" id="yandexReviewsBtn" href="#" target="_blank" rel="noopener">
+        <a class="btn ghost" id="yandexReviewsBtn"
+           href="https://yandex.ru/maps/org/krougen/244810224910/reviews/"
+           target="_blank" rel="noopener">
           <i class="fa-brands fa-yandex"></i> Яндекс
         </a>
 
-        <a class="btn ghost" id="googleReviewsBtn" href="#" target="_blank" rel="noopener">
+        <a class="btn ghost" id="googleReviewsBtn"
+           href="https://www.google.com/maps/search/?api=1&query=Krougen%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%207-%D1%8F%20%D0%9B%D0%B8%D0%BD%D0%B8%D1%8F%2C%20112%2C%20%D0%93%D0%BE%D1%80%D1%8F%D1%87%D0%B5%D0%B2%D0%BE%D0%B4%D1%81%D0%BA%D0%B8%D0%B9%2C%20%D0%9F%D1%8F%D1%82%D0%B8%D0%B3%D0%BE%D1%80%D1%81%D0%BA"
+           target="_blank" rel="noopener">
           <i class="fa-brands fa-google"></i> Google
         </a>
 
-        <!-- Оставить отзыв: сразу Яндекс + ссылка на Google -->
         <div style="display:flex; flex-direction:column; gap:6px;">
-          <a class="btn primary" id="leaveReviewBtn" href="#" target="_blank" rel="noopener">
+          <a class="btn primary" id="leaveReviewBtn"
+             href="https://yandex.ru/maps/org/krougen/244810224910/reviews/"
+             target="_blank" rel="noopener">
             <i class="fa-solid fa-pen"></i> Оставить отзыв
           </a>
-          <a href="#" id="leaveReviewGoogle" target="_blank" rel="noopener"
+
+          <a id="leaveReviewGoogle"
+             href="https://www.google.com/maps/search/?api=1&query=Krougen%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%207-%D1%8F%20%D0%9B%D0%B8%D0%BD%D0%B8%D1%8F%2C%20112%2C%20%D0%93%D0%BE%D1%80%D1%8F%D1%87%D0%B5%D0%B2%D0%BE%D0%B4%D1%81%D0%BA%D0%B8%D0%B9%2C%20%D0%9F%D1%8F%D1%82%D0%B8%D0%B3%D0%BE%D1%80%D1%81%D0%BA"
+             target="_blank" rel="noopener"
              style="font-size:13px; color:var(--muted); text-decoration:underline;">
             или оставить отзыв в Google
           </a>
@@ -1150,7 +939,7 @@
   © 2025 Krougen — Сервисный центр
 </footer>
 
-<!-- ====== MODAL (ЗАЯВКА) ====== -->
+<!-- ===== MODAL: ЗАЯВКА ===== -->
 <div class="modal-overlay" id="requestModal" aria-hidden="true">
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-head">
@@ -1178,7 +967,7 @@
 
           <label>
             Вид техники
-            <select name="deviceType" required>
+            <select name="deviceType" id="modalDeviceType" required>
               <option value="" selected disabled>Выберите…</option>
               <option>ПК</option>
               <option>Ноутбук</option>
@@ -1191,23 +980,19 @@
 
           <label>
             Какая проблема
-            <input type="text" name="problemShort" placeholder="Например: не включается / шумит / тормозит" required />
+            <input type="text" name="problemShort" id="modalProblemShort" placeholder="Например: не включается / шумит / тормозит" required />
           </label>
         </div>
 
         <label style="margin-top:12px;">
           Описание проблемы (подробнее)
-          <textarea name="problem" placeholder="Опишите, что случилось и когда началось (по желанию)"></textarea>
+          <textarea name="problem" id="modalProblem" placeholder="Опишите, что случилось и когда началось (по желанию)"></textarea>
         </label>
 
-        <div class="success" id="successMsg">
-          <i class="fa-solid fa-circle-check"></i> Заявка отправлена, с вами свяжутся
-        </div>
+        <div class="success" id="successMsg"></div>
 
         <div class="modal-actions">
-          <button class="btn ghost" type="button" data-close-modal>
-            Отмена
-          </button>
+          <button class="btn ghost" type="button" data-close-modal>Отмена</button>
           <button class="btn primary" type="submit">
             <i class="fa-solid fa-paper-plane"></i> Отправить
           </button>
@@ -1218,7 +1003,7 @@
 </div>
 
 <script>
-  // --- Плавное появление секций и карточек услуг при прокрутке
+  // ====== Reveal animations ======
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if(entry.isIntersecting){
@@ -1229,14 +1014,11 @@
   }, { threshold: 0.15 });
 
   document.querySelectorAll('.fade-up, .service-card').forEach((el) => observer.observe(el));
-
-  // "лесенка" для карточек услуг
-  const serviceCards = document.querySelectorAll('.service-card');
-  serviceCards.forEach((card, idx) => {
+  document.querySelectorAll('.service-card').forEach((card, idx) => {
     card.style.transitionDelay = (idx * 35) + 'ms';
   });
 
-  // --- МОДАЛКА ЗАЯВКИ
+  // ====== MODAL ======
   const requestModal = document.getElementById('requestModal');
   const openButtons = document.querySelectorAll('[data-open-modal]');
   const closeButtons = document.querySelectorAll('[data-close-modal]');
@@ -1250,12 +1032,12 @@
     const firstInput = requestForm.querySelector('input, select, textarea');
     if(firstInput) firstInput.focus();
   }
-
   function closeRequestModal(){
     requestModal.classList.remove('show');
     requestModal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
     successMsg.classList.remove('show');
+    successMsg.innerHTML = '';
   }
 
   openButtons.forEach(btn => btn.addEventListener('click', openRequestModal));
@@ -1265,16 +1047,258 @@
     if(e.key === 'Escape' && requestModal.classList.contains('show')) closeRequestModal();
   });
 
+  // ====== Заявки и статусы (localStorage) ======
+  const LS_KEY = 'krougen_requests_v1';
+  const LS_LAST = 'krougen_last_request_id_v1';
+
+  function loadRequests(){
+    try { return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); }
+    catch { return {}; }
+  }
+  function saveRequests(obj){
+    localStorage.setItem(LS_KEY, JSON.stringify(obj));
+  }
+  function pad(num, size){
+    let s = String(num);
+    while(s.length < size) s = '0' + s;
+    return s;
+  }
+  function generateRequestId(){
+    const d = new Date();
+    const year = d.getFullYear();
+    const counterKey = `krougen_counter_${year}`;
+    const current = Number(localStorage.getItem(counterKey) || '0') + 1;
+    localStorage.setItem(counterKey, String(current));
+    return `KR-${year}-${pad(current, 6)}`;
+  }
+
+  // Демонстрационные статусы (можешь убрать)
+  (function seedDemoStatuses(){
+    const store = loadRequests();
+    if(Object.keys(store).length) return;
+    store['KR-2025-000101'] = { status:'готово', updatedAt: Date.now() - 86400000, note:'Можно забирать в рабочее время.' };
+    store['KR-2025-000102'] = { status:'в работе', updatedAt: Date.now() - 3600000, note:'Диагностика завершена, выполняем ремонт.' };
+    store['KR-2025-000103'] = { status:'ожидаем запчасть', updatedAt: Date.now() - 7200000, note:'Ожидаем поставку комплектующей.' };
+    saveRequests(store);
+  })();
+
+  // Отправка заявки (с генерацией номера)
   requestForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(requestForm).entries());
-    console.log('Заявка (локально):', data);
+
+    const id = generateRequestId();
+    const store = loadRequests();
+    store[id] = {
+      status: 'в работе',
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+      data
+    };
+    saveRequests(store);
+    localStorage.setItem(LS_LAST, id);
+
+    console.log('Заявка (локально):', id, data);
+
     successMsg.classList.add('show');
+    successMsg.innerHTML = `
+      <i class="fa-solid fa-circle-check"></i>
+      Заявка отправлена, с вами свяжутся.<br>
+      <span style="display:inline-block; margin-top:6px;">
+        Номер заявки: <b>${id}</b>
+      </span><br>
+      <span style="display:inline-block; margin-top:6px; color:var(--muted); font-weight:800;">
+        Проверить статус можно в разделе “Статус”.
+      </span>
+    `;
+
     requestForm.reset();
-    setTimeout(() => { closeRequestModal(); }, 1800);
+
+    setTimeout(() => { closeRequestModal(); }, 2200);
+
+    // Подставим номер в блок статуса
+    const statusInput = document.getElementById('statusInput');
+    if(statusInput) statusInput.value = id;
   });
 
-  // ===== REVIEWS SLIDER (base) =====
+  // ====== STATUS CHECK UI ======
+  const statusInput = document.getElementById('statusInput');
+  const statusCheckBtn = document.getElementById('statusCheckBtn');
+  const statusFillLastBtn = document.getElementById('statusFillLastBtn');
+  const statusOutput = document.getElementById('statusOutput');
+
+  function statusPill(status){
+    if(status === 'готово') return `<span class="pill ready"><i class="fa-solid fa-check"></i> готово</span>`;
+    if(status === 'ожидаем запчасть') return `<span class="pill wait"><i class="fa-solid fa-truck"></i> ожидаем запчасть</span>`;
+    return `<span class="pill work"><i class="fa-solid fa-screwdriver-wrench"></i> в работе</span>`;
+  }
+
+  function showStatus(id){
+    const store = loadRequests();
+    const item = store[id];
+
+    statusOutput.classList.add('show');
+
+    if(!item){
+      statusOutput.innerHTML = `
+        <div style="display:flex; gap:10px; align-items:flex-start;">
+          <i class="fa-solid fa-circle-exclamation" style="color:var(--purple-dark); margin-top:2px;"></i>
+          <div>
+            <b>Заявка не найдена</b><br>
+            <span style="color:var(--muted);">Проверьте номер. Если вы только что отправили заявку, используйте кнопку “Подставить последнюю”.</span>
+          </div>
+        </div>
+      `;
+      return;
+    }
+
+    const updated = item.updatedAt ? new Date(item.updatedAt) : null;
+    const updatedText = updated ? updated.toLocaleString('ru-RU') : '';
+
+    statusOutput.innerHTML = `
+      <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; align-items:flex-start;">
+        <div>
+          <div style="font-weight:900;">Номер заявки: <span style="color:var(--purple-dark);">${id}</span></div>
+          <div style="margin-top:8px;">Статус: ${statusPill(item.status || 'в работе')}</div>
+          ${updatedText ? `<div style="margin-top:8px; color:var(--muted); font-size:12px;">Обновлено: ${updatedText}</div>` : ``}
+          ${item.note ? `<div style="margin-top:10px; color:var(--muted);">Комментарий: ${item.note}</div>` : ``}
+        </div>
+
+        <button class="btn ghost" type="button" id="copyRequestIdBtn">
+          <i class="fa-solid fa-copy"></i> Скопировать номер
+        </button>
+      </div>
+    `;
+
+    const copyBtn = document.getElementById('copyRequestIdBtn');
+    copyBtn?.addEventListener('click', async () => {
+      try{
+        await navigator.clipboard.writeText(id);
+        copyBtn.innerHTML = `<i class="fa-solid fa-check"></i> Скопировано`;
+        setTimeout(() => copyBtn.innerHTML = `<i class="fa-solid fa-copy"></i> Скопировать номер`, 1200);
+      }catch{
+        alert('Не удалось скопировать. Скопируйте вручную: ' + id);
+      }
+    });
+  }
+
+  statusCheckBtn?.addEventListener('click', () => {
+    const id = (statusInput?.value || '').trim();
+    if(!id){
+      statusOutput.classList.add('show');
+      statusOutput.innerHTML = `<b>Введите номер заявки</b>`;
+      return;
+    }
+    showStatus(id);
+  });
+
+  statusFillLastBtn?.addEventListener('click', () => {
+    const last = localStorage.getItem(LS_LAST) || '';
+    if(statusInput) statusInput.value = last;
+    if(last) showStatus(last);
+  });
+
+  // ====== CALCULATOR ======
+  const calcDevice = document.getElementById('calcDevice');
+  const calcIssue = document.getElementById('calcIssue');
+  const calcPrice = document.getElementById('calcPrice');
+  const calcToRequest = document.getElementById('calcToRequest');
+
+  // базовые вилки (ориентиры)
+  const PRICE_RANGES = {
+    diagnostics: [500, 500],
+    paste: [800, 1200],
+    gpu: [500, 1500],
+    ram: [300, 900],
+    cooling_clean: [500, 1200],
+    drivers: [800, 1200],
+    antivirus: [500, 900],
+    apps: [500, 1000],
+    virus_clean: [500, 1500],
+    ssd_upgrade: [500, 1500],
+    hdd_replace: [800, 2000],
+    mb: [800, 2500],
+    psu: [500, 1500],
+    cpu: [700, 2000],
+    os: [1000, 2000],
+    case: [1000, 2500]
+  };
+
+  const ISSUE_LABELS = {
+    diagnostics: 'Диагностика',
+    paste: 'Замена термопасты',
+    gpu: 'Замена видеокарты',
+    ram: 'Увеличение ОЗУ',
+    cooling_clean: 'Чистка системы охлаждения',
+    drivers: 'Установка драйверов',
+    antivirus: 'Установка антивируса',
+    apps: 'Установка программ',
+    virus_clean: 'Удаление вирусов / чистка',
+    ssd_upgrade: 'Ускорение (SSD вместо HDD)',
+    hdd_replace: 'Замена диска',
+    mb: 'Замена материнской платы',
+    psu: 'Замена блока питания',
+    cpu: 'Замена процессора',
+    os: 'Установка Windows',
+    case: 'Замена корпуса'
+  };
+
+  function formatRub(n){
+    return new Intl.NumberFormat('ru-RU').format(n) + ' ₽';
+  }
+
+  function updateCalc(){
+    const dev = calcDevice?.value || '';
+    const issueKey = calcIssue?.value || '';
+    if(!dev || !issueKey){
+      calcPrice.textContent = 'Выберите параметры';
+      calcToRequest.disabled = true;
+      return;
+    }
+
+    const range = PRICE_RANGES[issueKey];
+    if(!range){
+      calcPrice.textContent = 'Уточните по телефону';
+      calcToRequest.disabled = false;
+      return;
+    }
+
+    const [min, max] = range;
+    const label = ISSUE_LABELS[issueKey] || 'Услуга';
+    const priceText = (min === max) ? `≈ ${formatRub(min)}` : `≈ ${formatRub(min)} — ${formatRub(max)}`;
+    calcPrice.textContent = `${label}: ${priceText}`;
+    calcToRequest.disabled = false;
+  }
+
+  calcDevice?.addEventListener('change', updateCalc);
+  calcIssue?.addEventListener('change', updateCalc);
+
+  // Кнопка "Оставить заявку" из калькулятора: откроет модалку и заполнит поля
+  const modalDeviceType = document.getElementById('modalDeviceType');
+  const modalProblemShort = document.getElementById('modalProblemShort');
+  const modalProblem = document.getElementById('modalProblem');
+
+  calcToRequest?.addEventListener('click', () => {
+    const dev = calcDevice?.value || '';
+    const issueKey = calcIssue?.value || '';
+    const label = ISSUE_LABELS[issueKey] || '';
+
+    if(modalDeviceType && dev){
+      modalDeviceType.value = dev;
+    }
+    if(modalProblemShort && label){
+      modalProblemShort.value = label;
+    }
+    if(modalProblem && dev && label){
+      const range = PRICE_RANGES[issueKey];
+      const priceText = range ? ((range[0] === range[1]) ? `${formatRub(range[0])}` : `${formatRub(range[0])} — ${formatRub(range[1])}`) : 'уточнить';
+      modalProblem.value = `Техника: ${dev}\nПроблема/услуга: ${label}\nОриентир по цене: ${priceText}\n\nОписание:`;
+    }
+
+    openRequestModal();
+  });
+
+  // ===== REVIEWS SLIDER =====
   const track = document.getElementById('reviewsTrack');
   const viewport = document.getElementById('reviewsViewport');
   const prevBtn = document.getElementById('reviewsPrev');
@@ -1294,7 +1318,7 @@
     index = clampIndex(i);
     if(!viewport || !track) return;
     const w = viewport.clientWidth;
-    track.style.transform = `translateX(${-(w + 14) * index}px)`; // 14 = gap
+    track.style.transform = `translateX(${-(w + 14) * index}px)`;
     updateDots();
   }
   function buildDots(){
@@ -1304,7 +1328,6 @@
       const d = document.createElement('button');
       d.className = 'dot';
       d.type = 'button';
-      d.setAttribute('aria-label', `Перейти к отзыву ${i+1}`);
       d.addEventListener('click', () => goTo(i));
       dotsWrap.appendChild(d);
     }
@@ -1315,21 +1338,19 @@
     [...dotsWrap.children].forEach((d, i) => d.classList.toggle('active', i === index));
   }
 
-  if(prevBtn) prevBtn.addEventListener('click', () => goTo(index - 1));
-  if(nextBtn) nextBtn.addEventListener('click', () => goTo(index + 1));
+  prevBtn?.addEventListener('click', () => goTo(index - 1));
+  nextBtn?.addEventListener('click', () => goTo(index + 1));
   window.addEventListener('resize', () => goTo(index));
 
-  // Swipe (touch + mouse drag)
-  let startX = 0;
-  let isDown = false;
+  // Swipe
+  let startX = 0, isDown = false;
   function onStart(x){ isDown = true; startX = x; }
   function onEnd(x){
     if(!isDown) return;
     isDown = false;
     const dx = x - startX;
     if(Math.abs(dx) < 40) return;
-    if(dx < 0) goTo(index + 1);
-    else goTo(index - 1);
+    dx < 0 ? goTo(index + 1) : goTo(index - 1);
   }
   if(viewport){
     viewport.addEventListener('touchstart', (e) => onStart(e.touches[0].clientX), {passive:true});
@@ -1339,45 +1360,61 @@
     viewport.addEventListener('mouseleave', () => { isDown = false; });
   }
 
-  // ===== LOAD REVIEWS FROM reviews.json + rating =====
-  async function loadReviewsFromJson() {
-    try {
+  // helpers
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  }
+  function buildStarsHtml(value) {
+    const v = Math.max(0, Math.min(5, Number(value) || 0));
+    const full = Math.floor(v);
+    const frac = v - full;
+    const half = frac >= 0.25 && frac < 0.75 ? 1 : 0;
+    const extraFull = frac >= 0.75 ? 1 : 0;
+
+    const stars = [];
+    for (let i = 0; i < full + extraFull; i++) stars.push('<i class="fa-solid fa-star"></i>');
+    if (half) stars.push('<i class="fa-solid fa-star-half-stroke"></i>');
+    while (stars.length < 5) stars.push('<i class="fa-regular fa-star"></i>');
+    return stars.join('');
+  }
+
+  // load reviews.json
+  async function loadReviewsFromJson(){
+    try{
       const res = await fetch('./reviews.json', { cache: 'no-store' });
-      if (!res.ok) throw new Error('reviews.json not found or not accessible');
+      if(!res.ok) throw new Error('reviews.json not found');
       const data = await res.json();
 
-      const yandexReviewsBtn = document.getElementById('yandexReviewsBtn');
-      const googleReviewsBtn = document.getElementById('googleReviewsBtn');
-      const leaveReviewBtn = document.getElementById('leaveReviewBtn');
-      const leaveReviewGoogle = document.getElementById('leaveReviewGoogle');
+      const yandexBtn = document.getElementById('yandexReviewsBtn');
+      const googleBtn = document.getElementById('googleReviewsBtn');
+      const leaveY = document.getElementById('leaveReviewBtn');
+      const leaveG = document.getElementById('leaveReviewGoogle');
 
-      if (yandexReviewsBtn && data?.sources?.yandex?.url) yandexReviewsBtn.href = data.sources.yandex.url;
-      if (googleReviewsBtn && data?.sources?.google?.url) googleReviewsBtn.href = data.sources.google.url;
+      if (yandexBtn && data?.sources?.yandex?.url) yandexBtn.href = data.sources.yandex.url;
+      if (googleBtn && data?.sources?.google?.url) googleBtn.href = data.sources.google.url;
+      if (leaveY && yandexBtn) leaveY.href = yandexBtn.href;
+      if (leaveG && googleBtn) leaveG.href = googleBtn.href;
 
-      // Оставить отзыв: сразу Яндекс (основной), Google — альтернативой
-      if (leaveReviewBtn && yandexReviewsBtn) leaveReviewBtn.href = yandexReviewsBtn.href;
-      if (leaveReviewGoogle && googleReviewsBtn) leaveReviewGoogle.href = googleReviewsBtn.href;
-
-      // Build slides
-      if (!track || !viewport) return;
       const reviews = Array.isArray(data?.reviews) ? data.reviews : [];
-      track.innerHTML = '';
+      reviews.sort((a,b) => String(b?.date||'').localeCompare(String(a?.date||'')));
 
+      track.innerHTML = '';
       const clampRating = (r) => {
         const x = Number(r);
         if (Number.isNaN(x)) return 0;
         return Math.max(0, Math.min(5, x));
       };
-
       const formatDate = (iso) => {
-        if (!iso) return '';
-        const [y, m, d] = String(iso).split('-');
-        if (!y || !m || !d) return '';
+        if(!iso) return '';
+        const [y,m,d] = String(iso).split('-');
+        if(!y||!m||!d) return '';
         return `${d}.${m}.${y}`;
       };
-
-      // сортировка по дате (новые сверху), если date есть
-      reviews.sort((a,b) => String(b?.date||'').localeCompare(String(a?.date||'')));
 
       reviews.forEach((r) => {
         const name = r?.name ? String(r.name) : 'Клиент';
@@ -1398,65 +1435,38 @@
         track.appendChild(slide);
       });
 
-      // Rating summary
       const ratingScoreEl = document.getElementById('ratingScore');
       const ratingSubEl = document.getElementById('ratingSub');
       const ratingStarsEl = document.getElementById('ratingStars');
 
-      const avg = reviews.length
-        ? (reviews.reduce((s, r) => s + clampRating(r?.rating), 0) / reviews.length)
-        : 0;
-
-      if (ratingScoreEl) ratingScoreEl.textContent = reviews.length ? `${avg.toFixed(1)}/5` : '—';
-      if (ratingSubEl) ratingSubEl.textContent = reviews.length
-        ? `на основе ${reviews.length} отзыв(ов)`
-        : 'пока нет отзывов';
-
-      if (ratingStarsEl) {
-        ratingStarsEl.innerHTML = buildStarsHtml(avg);
-        ratingStarsEl.setAttribute('aria-label', reviews.length ? `Общая оценка ${avg.toFixed(1)} из 5` : 'Нет оценок');
-      }
+      const avg = reviews.length ? (reviews.reduce((s,r) => s + clampRating(r?.rating), 0) / reviews.length) : 0;
+      ratingScoreEl.textContent = reviews.length ? `${avg.toFixed(1)}/5` : '—';
+      ratingSubEl.textContent = reviews.length ? `на основе ${reviews.length} отзыв(ов)` : 'пока нет отзывов';
+      ratingStarsEl.innerHTML = buildStarsHtml(avg);
 
       buildDots();
       goTo(0);
 
-    } catch (err) {
+    } catch(err){
       console.warn('Не удалось загрузить reviews.json:', err);
       const ratingStarsEl = document.getElementById('ratingStars');
       const ratingScoreEl = document.getElementById('ratingScore');
       const ratingSubEl = document.getElementById('ratingSub');
-      if (ratingStarsEl) ratingStarsEl.innerHTML = buildStarsHtml(0);
-      if (ratingScoreEl) ratingScoreEl.textContent = '—';
-      if (ratingSubEl) ratingSubEl.textContent = 'проверь reviews.json (нужен локальный сервер)';
+
+      ratingStarsEl.innerHTML = buildStarsHtml(0);
+      ratingScoreEl.textContent = '—';
+
+      const isFile = location.protocol === 'file:';
+      ratingSubEl.textContent = isFile
+        ? 'Открой сайт через Live Server (иначе reviews.json не загрузится)'
+        : 'reviews.json не найден (проверь, что он рядом с index.html)';
     }
   }
 
-  // Simple HTML escape
-  function escapeHtml(str) {
-    return String(str)
-      .replaceAll('&', '&amp;')
-      .replaceAll('<', '&lt;')
-      .replaceAll('>', '&gt;')
-      .replaceAll('"', '&quot;')
-      .replaceAll("'", '&#039;');
-  }
-
-  // Build star icons (0..5 with half)
-  function buildStarsHtml(value) {
-    const v = Math.max(0, Math.min(5, Number(value) || 0));
-    const full = Math.floor(v);
-    const frac = v - full;
-    const half = frac >= 0.25 && frac < 0.75 ? 1 : 0;
-    const extraFull = frac >= 0.75 ? 1 : 0;
-
-    const stars = [];
-    for (let i = 0; i < full + extraFull; i++) stars.push('<i class="fa-solid fa-star"></i>');
-    if (half) stars.push('<i class="fa-solid fa-star-half-stroke"></i>');
-    while (stars.length < 5) stars.push('<i class="fa-regular fa-star"></i>');
-    return stars.join('');
-  }
-
-  document.addEventListener('DOMContentLoaded', loadReviewsFromJson);
+  document.addEventListener('DOMContentLoaded', () => {
+    loadReviewsFromJson();
+    updateCalc(); // чтобы корректно стояла заглушка
+  });
 </script>
 
 </body>
