@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Krougen — Сервисный центр</title>
+
+  <!-- ИКОНКИ (Font Awesome) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        referrerpolicy="no-referrer" />
+
+  <style>
+    :root{
+      --purple:#7b2cff;
+      --purple-dark:#5a1fd1;
+      --black:#0f0f12;
+      --white:#ffffff;
+      --bg:#f3f3f7;
+      --text:#1c1c1e;
+      --muted:#6b6b73;
+      --shadow:0 10px 28px rgba(0,0,0,.14);
+      --radius:16px;
+      --border:1px solid rgba(0,0,0,.08);
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+
+    /* ====== HEADER ====== */
+    header{
+      background: radial-gradient(900px 380px at 18% 10%, rgba(123,44,255,.25), transparent 55%),
+                  linear-gradient(135deg, var(--black), var(--purple-dark));
+      color:var(--white);
+      padding:34px 18px 26px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .topbar{
+      max-width:1100px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:260px;
+    }
+
+    /* МЕСТО ПОД ЛОГОТИП */
+    .logo-box{
+      width:52px;
+      height:52px;
+      border-radius:14px;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 auto;
+      overflow:hidden;
+    }
+    .logo-box img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+    .logo-placeholder{
+      font-size:12px;
+      opacity:.9;
+      text-align:center;
+      padding:6px;
+      line-height:1.1;
+      font-weight:800;
+      letter-spacing:.5px;
+    }
+
+    .brand-title{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+    .brand-title strong{
+      font-size:20px;
+      letter-spacing:.6px;
+    }
+    .brand-title span{
+      font-size:12px;
+      opacity:.92;
+    }
+
+    nav{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    nav a{
+      color:rgba(255,255,255,.92);
+      text-decoration:none;
+      font-weight:700;
+      font-size:13px;
+      padding:10px 12px;
+      border-radius:12px;
+      transition:.2s;
+    }
+    nav a:hover{
+      background:rgba(255,255,255,.10);
+      color:#fff;
+    }
+
+    .hero{
+      max-width:1100px;
+      margin:18px auto 0;
+      padding:18px 0 8px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+      align-items:center;
+    }
+
+    .hero h1{
+      margin:0;
+      font-size:34px;
+      letter-spacing:.3px;
+    }
+    .hero p{
+      margin:10px 0 0;
+      opacity:.92;
+      color:rgba(255,255,255,.92);
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:800;
+      transition: transform .18s ease, opacity .18s ease, box-shadow .18s ease, background .18s ease;
+      border:1px solid transparent;
+      user-select:none;
+      cursor:pointer;
+    }
+    .btn:active{ transform: translateY(1px); }
+
+    .btn.primary{
+      background:var(--purple);
+      color:var(--white);
+      box-shadow: 0 12px 26px rgba(123,44,255,.30);
+    }
+    .btn.primary:hover{
+      background:var(--purple-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(123,44,255,.36);
+    }
+
+    .btn.dark{
+      background:rgba(0,0,0,.35);
+      color:var(--white);
+      border-color:rgba(255,255,255,.18);
+    }
+    .btn.dark:hover{
+      transform: translateY(-2px);
+      opacity:.95;
+    }
+
+    .btn.ghost{
+      background:transparent;
+      color:var(--text);
+      border:1px solid rgba(0,0,0,.12);
+    }
+    .btn.ghost:hover{
+      background:rgba(0,0,0,.04);
+      transform: translateY(-1px);
+    }
+
+    .hero-badges{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      justify-content:center;
+      align-items:flex-end;
+    }
+    .badge{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:16px;
+      background:rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.18);
+      width: fit-content;
+      max-width: 340px;
+      backdrop-filter: blur(6px);
+    }
+    .badge i{ color:#fff; opacity:.95; }
+    .badge div{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      font-size:13px;
+    }
+    .badge small{ opacity:.92; }
+
+    /* ====== LAYOUT ====== */
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:34px 18px 40px;
+    }
+
+    h2{
+      margin:0 0 14px;
+      color:var(--purple-dark);
+      letter-spacing:.2px;
+    }
+
+    .card{
+      background:var(--white);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow);
+      border:var(--border);
+    }
+
+    /* ====== SERVICES GRID ====== */
+    .services{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:18px;
+    }
+
+    .service-card{
+      background:var(--white);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      border:var(--border);
+      overflow:hidden;
+      transform: translateY(10px);
+      opacity:0;
+      transition: transform .25s ease, box-shadow .25s ease, opacity .4s ease;
+    }
+    .service-card.reveal{
+      transform: translateY(0);
+      opacity:1;
+    }
+    .service-card:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0,0,0,.18);
+    }
+
+    .service-media{
+      position:relative;
+      width:100%;
+      height:150px;
+      background:linear-gradient(135deg, rgba(123,44,255,.20), rgba(0,0,0,.12));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+    .service-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .media-overlay{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,.38), rgba(0,0,0,0));
+      pointer-events:none;
+    }
+    .media-label{
+      position:absolute;
+      bottom:10px;
+      left:12px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      background:rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.16);
+      color:#fff;
+      font-weight:800;
+      font-size:12px;
+      backdrop-filter: blur(6px);
+    }
+
+    .service-body{
+      padding:16px 16px 18px;
+    }
+    .service-title{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      margin-bottom:8px;
+    }
+    .service-title i{
+      color:var(--purple);
+      margin-top:2px;
+      font-size:18px;
+      width:22px;
+      text-align:center;
+    }
+    .service-title h3{
+      margin:0;
+      font-size:1.05em;
+      line-height:1.25;
+    }
+    .service-body p{
+      margin:0 0 10px;
+      color:var(--muted);
+      font-size:.94em;
+    }
+    .price{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-top:10px;
+      padding-top:10px;
+      border-top:1px dashed rgba(0,0,0,.12);
+    }
+    .price strong{
+      color:var(--purple-dark);
+      font-size:1.06em;
+    }
+    .tag{
+      font-size:12px;
+      font-weight:800;
+      color:#111;
+      background:rgba(123,44,255,.10);
+      border:1px solid rgba(123,44,255,.20);
+      padding:6px 10px;
+      border-radius:999px;
+      white-space:nowrap;
+    }
+
+    /* ====== WHY ====== */
+    .why-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:16px;
+      margin-top:12px;
+    }
+    .mini-card{
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 10px 28px rgba(0,0,0,.08);
+      background:#fff;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .mini-card:hover{
+      transform: translateY(-2px);
+      box-shadow:0 14px 34px rgba(0,0,0,.12);
+    }
+
+    /* ===== REVIEWS (rating + slider) ===== */
+    .reviews-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .rating-row{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-top:10px;
+      flex-wrap:wrap;
+    }
+    .rating-stars{
+      display:flex;
+      gap:4px;
+      color:var(--purple);
+      font-size:16px;
+      min-height:20px;
+    }
+    .rating-text{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+    .rating-score{
+      font-size:18px;
+      color:var(--purple-dark);
+    }
+    .rating-sub{
+      font-size:12px;
+      color:var(--muted);
+    }
+    .reviews-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:flex-start;
+    }
+
+    .reviews-slider{
+      margin-top:16px;
+      position:relative;
+      display:grid;
+      grid-template-columns: 42px 1fr 42px;
+      gap:10px;
+      align-items:center;
+    }
+    .reviews-viewport{
+      overflow:hidden;
+      border-radius:16px;
+    }
+    .reviews-track{
+      display:flex;
+      gap:14px;
+      transition: transform .35s ease;
+      will-change: transform;
+    }
+    .review-slide{
+      min-width:100%;
+      background:#fff;
+      border:var(--border);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 10px 28px rgba(0,0,0,.08);
+    }
+    .review-top{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .review-score{
+      color:var(--purple-dark);
+      font-weight:900;
+    }
+    .review-slide p{
+      margin:10px 0 0;
+      color:var(--muted);
+    }
+
+    .slider-btn{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      border:1px solid rgba(0,0,0,.12);
+      background:#fff;
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .slider-btn:hover{ background:rgba(0,0,0,.04); transform: translateY(-1px); }
+    .slider-btn:active{ transform: translateY(0); }
+
+    .dots{
+      margin-top:12px;
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.16);
+      background:rgba(123,44,255,.12);
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .dot.active{
+      background:rgba(123,44,255,.75);
+      transform: scale(1.05);
+    }
+
+    @media (max-width:640px){
+      .reviews-slider{ grid-template-columns: 1fr; }
+      .slider-btn{ display:none; }
+    }
+
+    /* ====== CONTACTS ====== */
+    .contact-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+    .kv{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:6px;
+    }
+    .kv .row{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .kv i{
+      color:var(--purple);
+      font-size:16px;
+      margin-top:3px;
+      width:18px;
+      text-align:center;
+    }
+
+    .map iframe{
+      width:100%;
+      height:270px;
+      border:0;
+      border-radius:14px;
+    }
+
+    footer{
+      background:var(--black);
+      color:var(--white);
+      text-align:center;
+      padding:18px 10px;
+      font-size:.92em;
+    }
+
+    /* ====== SECTION ANIMATIONS ====== */
+    .fade-up{
+      opacity:0;
+      transform: translateY(12px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .fade-up.reveal{
+      opacity:1;
+      transform: translateY(0);
+    }
+
+    /* ====== MODAL ====== */
+    .modal-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.60);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:9999;
+    }
+    .modal-overlay.show{ display:flex; }
+
+    .modal{
+      width:min(560px, 100%);
+      background:var(--white);
+      border-radius:22px;
+      box-shadow:0 24px 60px rgba(0,0,0,.30);
+      border:1px solid rgba(0,0,0,.10);
+      overflow:hidden;
+      transform: translateY(10px) scale(.98);
+      opacity:0;
+      transition: transform .18s ease, opacity .18s ease;
+    }
+    .modal-overlay.show .modal{
+      transform: translateY(0) scale(1);
+      opacity:1;
+    }
+
+    .modal-head{
+      background:linear-gradient(135deg, rgba(123,44,255,.18), rgba(0,0,0,.05));
+      padding:18px 18px 14px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .modal-head h3{
+      margin:0;
+      font-size:18px;
+      color:var(--black);
+    }
+    .modal-head p{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .modal-close{
+      background:transparent;
+      border:0;
+      cursor:pointer;
+      font-size:18px;
+      padding:8px 10px;
+      border-radius:12px;
+      transition:.15s;
+      color:#222;
+    }
+    .modal-close:hover{ background:rgba(0,0,0,.06); }
+
+    .modal-body{ padding:16px 18px 18px; }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    label{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      font-size:12px;
+      font-weight:800;
+      color:#222;
+    }
+
+    input, select, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(0,0,0,.14);
+      outline:none;
+      font-size:14px;
+      transition:border-color .15s ease, box-shadow .15s ease;
+      background:#fff;
+    }
+    textarea{ min-height:100px; resize:vertical; }
+
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(123,44,255,.55);
+      box-shadow: 0 0 0 4px rgba(123,44,255,.14);
+    }
+
+    .modal-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:14px;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    .success{
+      display:none;
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      background:rgba(123,44,255,.10);
+      border:1px solid rgba(123,44,255,.22);
+      color:#1a1130;
+      font-weight:900;
+      font-size:13px;
+    }
+    .success.show{ display:block; }
+
+    body.modal-open{ overflow:hidden; }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width:860px){
+      .hero{ grid-template-columns:1fr; }
+      .hero-badges{ align-items:flex-start; }
+      nav{ justify-content:flex-start; }
+    }
+    @media (max-width:760px){
+      .contact-grid{ grid-template-columns:1fr; }
+      .brand{ min-width:unset; }
+      header{ padding-bottom:18px; }
+      .hero h1{ font-size:28px; }
+      .form-grid{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <div class="logo-box" title="Логотип">
+        <div class="logo-placeholder">LOGO</div>
+        <!-- Когда будет файл:
+        <img src="images/logo.png" alt="Krougen">
+        -->
+      </div>
+
+      <div class="brand-title">
+        <strong>Krougen</strong>
+        <span>Ремонт ПК • Периферия • Оргтехника</span>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#about"><i class="fa-solid fa-circle-info"></i> О нас</a>
+      <a href="#why"><i class="fa-solid fa-bolt"></i> Почему мы</a>
+      <a href="#services"><i class="fa-solid fa-screwdriver-wrench"></i> Услуги</a>
+      <a href="#reviews"><i class="fa-solid fa-star"></i> Отзывы</a>
+      <a href="#contacts"><i class="fa-solid fa-phone"></i> Контакты</a>
+      <a href="#map"><i class="fa-solid fa-location-dot"></i> Карта</a>
+    </nav>
+  </div>
+
+  <div class="hero">
+    <div>
+      <h1>Сервисный центр Krougen</h1>
+      <p>Диагностика, ремонт, апгрейд и настройка — быстро, аккуратно и с гарантией.</p>
+
+      <div class="hero-actions">
+        <a class="btn primary" href="tel:+79187914800">
+          <i class="fa-solid fa-phone"></i> Позвонить
+        </a>
+        <button class="btn dark" type="button" data-open-modal>
+          <i class="fa-solid fa-pen-to-square"></i> Оставить заявку
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-badges">
+      <div class="badge">
+        <i class="fa-solid fa-clock"></i>
+        <div>
+          <strong>10:00–20:00</strong>
+          <small>Вт–Вс, Пн — выходной</small>
+        </div>
+      </div>
+
+      <div class="badge">
+        <i class="fa-solid fa-location-dot"></i>
+        <div>
+          <strong>Горячеводский</strong>
+          <small>ул. 7-я Линия, 112</small>
+        </div>
+      </div>
+
+      <div class="badge">
+        <i class="fa-solid fa-shield-halved"></i>
+        <div>
+          <strong>Гарантия</strong>
+          <small>на выполненные работы</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <section id="about" class="card fade-up">
+    <h2>О нас</h2>
+    <p>
+      Krougen — сервисный центр по ремонту и обслуживанию компьютеров, ноутбуков, периферии и оргтехники.
+      Мы честно диагностируем проблему, предлагаем решения и выполняем работу в понятные сроки.
+    </p>
+  </section>
+
+  <section id="why" class="card fade-up" style="margin-top:26px;">
+    <h2>Почему Krougen</h2>
+
+    <div class="why-grid">
+      <div class="mini-card">
+        <div style="display:flex; gap:12px; align-items:flex-start;">
+          <i class="fa-solid fa-shield-halved" style="color:var(--purple); font-size:18px; margin-top:3px;"></i>
+          <div>
+            <strong>Гарантия</strong>
+            <div style="color:var(--muted); margin-top:4px;">Даём гарантию на выполненные работы и заменённые комплектующие.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mini-card">
+        <div style="display:flex; gap:12px; align-items:flex-start;">
+          <i class="fa-solid fa-stopwatch" style="color:var(--purple); font-size:18px; margin-top:3px;"></i>
+          <div>
+            <strong>Сроки</strong>
+            <div style="color:var(--muted); margin-top:4px;">Стараемся делать ремонт максимально быстро и предупреждаем о сроках заранее.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mini-card">
+        <div style="display:flex; gap:12px; align-items:flex-start;">
+          <i class="fa-solid fa-magnifying-glass" style="color:var(--purple); font-size:18px; margin-top:3px;"></i>
+          <div>
+            <strong>Честная диагностика</strong>
+            <div style="color:var(--muted); margin-top:4px;">Объясняем причину поломки и предлагаем варианты решения без навязывания.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mini-card">
+        <div style="display:flex; gap:12px; align-items:flex-start;">
+          <i class="fa-solid fa-screwdriver-wrench" style="color:var(--purple); font-size:18px; margin-top:3px;"></i>
+          <div>
+            <strong>Опыт</strong>
+            <div style="color:var(--muted); margin-top:4px;">Регулярно обслуживаем ПК, ноутбуки и оргтехнику — знаем типовые и редкие проблемы.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" style="margin-top:26px;" class="fade-up">
+    <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+      <h2 style="margin:0;">Услуги и цены</h2>
+      <button class="btn primary" type="button" data-open-modal>
+        <i class="fa-solid fa-pen-to-square"></i> Оставить заявку
+      </button>
+    </div>
+
+    <div class="services" style="margin-top:16px;">
+
+      <article class="service-card">
+        <div class="service-media">
+          <img src="images/diagnostika.jpg" alt="Диагностика компьютера">
+          <div class="media-overlay"></div>
+          <div class="media-label"><i class="fa-solid fa-magnifying-glass"></i> Фото услуги</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title"><i class="fa-solid fa-stethoscope"></i><h3>Диагностика компьютера</h3></div>
+          <p>Если ваш ПК будет ремонтироваться у нас — диагностика бесплатная. Выявляем неисправность.</p>
+          <div class="price"><strong>от 500 ₽</strong><span class="tag">Диагностика</span></div>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-media">
+          <img src="images/termopasta.jpg" alt="Замена термопасты">
+          <div class="media-overlay"></div>
+          <div class="media-label"><i class="fa-solid fa-fan"></i> Фото услуги</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title"><i class="fa-solid fa-temperature-half"></i><h3>Замена термопасты</h3></div>
+          <p>Замена термопасты на различных комплектующих по необходимости.</p>
+          <div class="price"><strong>от 800 ₽</strong><span class="tag">Охлаждение</span></div>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-media">
+          <img src="images/gpu.jpg" alt="Замена видеокарты">
+          <div class="media-overlay"></div>
+          <div class="media-label"><i class="fa-solid fa-display"></i> Фото услуги</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title"><i class="fa-solid fa-microchip"></i><h3>Замена видеокарты</h3></div>
+          <p>Подберём видеокарту под ваш запрос (офисная/игровая) и произведём замену.</p>
+          <div class="price"><strong>от 500 ₽</strong><span class="tag">Апгрейд</span></div>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-media">
+          <img src="images/ram.jpg" alt="Увеличение оперативной памяти">
+          <div class="media-overlay"></div>
+          <div class="media-label"><i class="fa-solid fa-memory"></i> Фото услуги</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title"><i class="fa-solid fa-memory"></i><h3>Увеличение оперативной памяти</h3></div>
+          <p>Увеличение или замена оперативной памяти.</p>
+          <div class="price"><strong>от 300 ₽</strong><span class="tag">Апгрейд</span></div>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-media">
+          <img src="images/cooling-clean.jpg" alt="Чистка системы охлаждения">
+          <div class="media-overlay"></div>
+          <div class="media-label"><i class="fa-solid fa-wind"></i> Фото услуги</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title"><i class="fa-solid fa-wind"></i><h3>Чистка системы охлаждения</h3></div>
+          <p>Чистка радиаторов охлаждения различных комплектующих от пыли и загрязнений.</p>
+          <div class="price"><strong>от 500 ₽</strong><span class="tag">Профилактика</span></div>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-media">
+          <img src="images/drivers.jpg" alt="Установка базовых драйверов">
+          <div class="media-overlay"></div>
+          <div class="media-label"><i class="fa-solid fa-gears"></i> Фото услуги</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title"><i class="fa-solid fa-gears"></i><h3>Установка базовых драйверов</h3></div>
+          <p>Установка необходимых драйверов для работы вашего оборудования.</p>
+          <div class="price"><strong>от 800 ₽</strong><span class="tag">Настройка</span></div>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-media">
+          <img src="images/antivirus.jpg" alt="Установка антивируса">
+          <div class="media-overlay"></div>
+          <div class="media-label"><i class="fa-solid fa-shield-virus"></i> Фото услуги</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title"><i class="fa-solid fa-shield-virus"></i><h3>Установка антивируса</h3></div>
+          <p>Защита вашего оборудования от взломов и вредоносных программ.</p>
+          <div class="price"><strong>от 500 ₽</strong><span class="tag">Безопасность</span></div>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-media">
+          <img src="images/apps.jpg" alt="Установка программ">
+          <div class="media-overlay"></div>
+          <div class="media-label"><i class="fa-solid fa-puzzle-piece"></i> Фото услуги</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title"><i class="fa-solid fa-puzzle-piece"></i><h3>Установка программ</h3></div>
+          <p>Установка сторонних программ для комфортного пользования.</p>
+          <div class="price"><strong>от 500 ₽</strong><span class="tag">ПО</span></div>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-media">
+          <img src="images/virus-clean.jpg" alt="Чистка и удаление вирусов">
+          <div class="media-overlay"></div>
+          <div class="media-label"><i class="fa-solid fa-bug-slash"></i> Фото услуги</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title"><i class="fa-solid fa-bug-slash"></i><h3>Чистка и удаление вирусов</h3></div>
+          <p>Программная чистка оборудования от ненужных программ и кешов.</p>
+          <div class="price"><strong>от 500 ₽</strong><span class="tag">Оптимизация</span></div>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-media">
+          <img src="images/ssd.jpg" alt="Увеличение скорости работы">
+          <div class="media-overlay"></div>
+          <div class="media-label"><i class="fa-solid fa-gauge-high"></i> Фото услуги</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title"><i class="fa-solid fa-gauge-high"></i><h3>Увеличение скорости работы оборудования</h3></div>
+          <p>Замена жёсткого диска на SSD для заметного ускорения.</p>
+          <div class="price"><strong>от 500 ₽</strong><span class="tag">SSD</span></div>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-media">
+          <img src="images/hdd.jpg" alt="Замена жесткого диска">
+          <div class="media-overlay"></div>
+          <div class="media-label"><i class="fa-solid fa-hard-drive"></i> Фото услуги</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title"><i class="fa-solid fa-hard-drive"></i><h3>Замена жёсткого диска</h3></div>
+          <p>Если компьютер начал медленнее работать — эта услуга точно для вас.</p>
+          <div class="price"><strong>от 800 ₽</strong><span class="tag">Накопители</span></div>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-media">
+          <img src="images/motherboard.jpg" alt="Замена материнской платы">
+          <div class="media-overlay"></div>
+          <div class="media-label"><i class="fa-solid fa-diagram-project"></i> Фото услуги</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title"><i class="fa-solid fa-diagram-project"></i><h3>Замена материнской платы</h3></div>
+          <p>Материнская плата отвечает за все рабочие процессы вашего ПК.</p>
+          <div class="price"><strong>от 800 ₽</strong><span class="tag">Ремонт</span></div>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-media">
+          <img src="images/psu.jpg" alt="Замена блока питания">
+          <div class="media-overlay"></div>
+          <div class="media-label"><i class="fa-solid fa-plug-circle-bolt"></i> Фото услуги</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title"><i class="fa-solid fa-plug-circle-bolt"></i><h3>Замена блока питания</h3></div>
+          <p>Замена неисправного БП или увеличение мощности блока питания.</p>
+          <div class="price"><strong>от 500 ₽</strong><span class="tag">Питание</span></div>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-media">
+          <img src="images/cpu.jpg" alt="Замена процессора">
+          <div class="media-overlay"></div>
+          <div class="media-label"><i class="fa-solid fa-microchip"></i> Фото услуги</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title"><i class="fa-solid fa-microchip"></i><h3>Замена процессора</h3></div>
+          <p>Замена неисправного процессора или апгрейд.</p>
+          <div class="price"><strong>от 700 ₽</strong><span class="tag">Апгрейд</span></div>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-media">
+          <img src="images/windows.jpg" alt="Установка операционной системы">
+          <div class="media-overlay"></div>
+          <div class="media-label"><i class="fa-brands fa-windows"></i> Фото услуги</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title"><i class="fa-brands fa-windows"></i><h3>Установка операционной системы</h3></div>
+          <p>Установка Windows 10/11 и других поколений.</p>
+          <div class="price"><strong>от 1000 ₽</strong><span class="tag">ОС</span></div>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-media">
+          <img src="images/case.jpg" alt="Замена корпуса">
+          <div class="media-overlay"></div>
+          <div class="media-label"><i class="fa-solid fa-computer"></i> Фото услуги</div>
+        </div>
+        <div class="service-body">
+          <div class="service-title"><i class="fa-solid fa-computer"></i><h3>Замена корпуса</h3></div>
+          <p>Замена корпуса компьютера.</p>
+          <div class="price"><strong>от 1000 ₽</strong><span class="tag">Сборка</span></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ====== REVIEWS (from reviews.json) ====== -->
+  <section id="reviews" class="card fade-up" style="margin-top:26px;">
+    <div class="reviews-head">
+      <div>
+        <h2 style="margin:0;">Отзывы клиентов</h2>
+
+        <div class="rating-row">
+          <div class="rating-stars" id="ratingStars" aria-label="Общая оценка"></div>
+          <div class="rating-text">
+            <strong class="rating-score" id="ratingScore">—</strong>
+            <span class="rating-sub" id="ratingSub">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews-actions">
+        <a class="btn ghost" id="yandexReviewsBtn" href="#" target="_blank" rel="noopener">
+          <i class="fa-brands fa-yandex"></i> Яндекс
+        </a>
+
+        <a class="btn ghost" id="googleReviewsBtn" href="#" target="_blank" rel="noopener">
+          <i class="fa-brands fa-google"></i> Google
+        </a>
+
+        <!-- Оставить отзыв: сразу Яндекс + ссылка на Google -->
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <a class="btn primary" id="leaveReviewBtn" href="#" target="_blank" rel="noopener">
+            <i class="fa-solid fa-pen"></i> Оставить отзыв
+          </a>
+          <a href="#" id="leaveReviewGoogle" target="_blank" rel="noopener"
+             style="font-size:13px; color:var(--muted); text-decoration:underline;">
+            или оставить отзыв в Google
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-slider" aria-label="Слайдер отзывов">
+      <button class="slider-btn prev" type="button" aria-label="Предыдущий отзыв" id="reviewsPrev">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+
+      <div class="reviews-viewport" id="reviewsViewport">
+        <div class="reviews-track" id="reviewsTrack"></div>
+      </div>
+
+      <button class="slider-btn next" type="button" aria-label="Следующий отзыв" id="reviewsNext">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <div class="dots" id="reviewsDots" aria-label="Индикаторы слайдов"></div>
+  </section>
+
+  <section id="contacts" class="card fade-up" style="margin-top:26px;">
+    <h2>Контакты</h2>
+
+    <div class="contact-grid">
+      <div class="kv">
+        <div class="row">
+          <i class="fa-solid fa-phone"></i>
+          <div>
+            <div><strong>Телефон</strong></div>
+            <a href="tel:+79187914800">+7 (918) 791-48-00</a>
+          </div>
+        </div>
+
+        <div class="row">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>
+            <div><strong>Адрес</strong></div>
+            <div>улица 7-я Линия, 112, посёлок Горячеводский, городской округ Пятигорск, Ставропольский край</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="kv">
+        <div class="row">
+          <i class="fa-solid fa-clock"></i>
+          <div>
+            <div><strong>Время работы</strong></div>
+            <div>Вт–Вс: 10:00–20:00</div>
+            <div>Понедельник — выходной</div>
+          </div>
+        </div>
+
+        <div class="hero-actions" style="margin-top:10px;">
+          <button class="btn primary" type="button" data-open-modal>
+            <i class="fa-solid fa-pen-to-square"></i> Оставить заявку
+          </button>
+          <a class="btn dark" href="#map">
+            <i class="fa-solid fa-route"></i> Как проехать
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="map" class="card fade-up map" style="margin-top:26px;">
+    <h2>Мы на карте</h2>
+    <iframe
+      src="https://www.google.com/maps?q=%D1%83%D0%BB%D0%B8%D1%86%D0%B0%207-%D1%8F%20%D0%9B%D0%B8%D0%BD%D0%B8%D1%8F%2C%20112%2C%20%D0%93%D0%BE%D1%80%D1%8F%D1%87%D0%B5%D0%B2%D0%BE%D0%B4%D1%81%D0%BA%D0%B8%D0%B9%2C%20%D0%9F%D1%8F%D1%82%D0%B8%D0%B3%D0%BE%D1%80%D1%81%D0%BA&output=embed"
+      loading="lazy"
+      allowfullscreen="">
+    </iframe>
+  </section>
+
+</div>
+
+<footer>
+  © 2025 Krougen — Сервисный центр
+</footer>
+
+<!-- ====== MODAL (ЗАЯВКА) ====== -->
+<div class="modal-overlay" id="requestModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-head">
+      <div>
+        <h3 id="modalTitle"><i class="fa-solid fa-pen-to-square"></i> Оставить заявку</h3>
+        <p>Заполните форму — мы свяжемся с вами в ближайшее время.</p>
+      </div>
+      <button class="modal-close" type="button" aria-label="Закрыть" data-close-modal>
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form id="requestForm">
+        <div class="form-grid">
+          <label>
+            Имя
+            <input type="text" name="name" placeholder="Например: Андрей" required />
+          </label>
+
+          <label>
+            Телефон
+            <input type="tel" name="phone" placeholder="+7 (___) ___-__-__" required />
+          </label>
+
+          <label>
+            Вид техники
+            <select name="deviceType" required>
+              <option value="" selected disabled>Выберите…</option>
+              <option>ПК</option>
+              <option>Ноутбук</option>
+              <option>Принтер / МФУ</option>
+              <option>Монитор</option>
+              <option>Периферия</option>
+              <option>Другое</option>
+            </select>
+          </label>
+
+          <label>
+            Какая проблема
+            <input type="text" name="problemShort" placeholder="Например: не включается / шумит / тормозит" required />
+          </label>
+        </div>
+
+        <label style="margin-top:12px;">
+          Описание проблемы (подробнее)
+          <textarea name="problem" placeholder="Опишите, что случилось и когда началось (по желанию)"></textarea>
+        </label>
+
+        <div class="success" id="successMsg">
+          <i class="fa-solid fa-circle-check"></i> Заявка отправлена, с вами свяжутся
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn ghost" type="button" data-close-modal>
+            Отмена
+          </button>
+          <button class="btn primary" type="submit">
+            <i class="fa-solid fa-paper-plane"></i> Отправить
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // --- Плавное появление секций и карточек услуг при прокрутке
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('reveal');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up, .service-card').forEach((el) => observer.observe(el));
+
+  // "лесенка" для карточек услуг
+  const serviceCards = document.querySelectorAll('.service-card');
+  serviceCards.forEach((card, idx) => {
+    card.style.transitionDelay = (idx * 35) + 'ms';
+  });
+
+  // --- МОДАЛКА ЗАЯВКИ
+  const requestModal = document.getElementById('requestModal');
+  const openButtons = document.querySelectorAll('[data-open-modal]');
+  const closeButtons = document.querySelectorAll('[data-close-modal]');
+  const requestForm = document.getElementById('requestForm');
+  const successMsg = document.getElementById('successMsg');
+
+  function openRequestModal(){
+    requestModal.classList.add('show');
+    requestModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    const firstInput = requestForm.querySelector('input, select, textarea');
+    if(firstInput) firstInput.focus();
+  }
+
+  function closeRequestModal(){
+    requestModal.classList.remove('show');
+    requestModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    successMsg.classList.remove('show');
+  }
+
+  openButtons.forEach(btn => btn.addEventListener('click', openRequestModal));
+  closeButtons.forEach(btn => btn.addEventListener('click', closeRequestModal));
+  requestModal.addEventListener('click', (e) => { if(e.target === requestModal) closeRequestModal(); });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && requestModal.classList.contains('show')) closeRequestModal();
+  });
+
+  requestForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(requestForm).entries());
+    console.log('Заявка (локально):', data);
+    successMsg.classList.add('show');
+    requestForm.reset();
+    setTimeout(() => { closeRequestModal(); }, 1800);
+  });
+
+  // ===== REVIEWS SLIDER (base) =====
+  const track = document.getElementById('reviewsTrack');
+  const viewport = document.getElementById('reviewsViewport');
+  const prevBtn = document.getElementById('reviewsPrev');
+  const nextBtn = document.getElementById('reviewsNext');
+  const dotsWrap = document.getElementById('reviewsDots');
+  let index = 0;
+
+  function slidesCount(){ return track ? track.children.length : 0; }
+  function clampIndex(i){
+    const n = slidesCount();
+    if(n === 0) return 0;
+    if(i < 0) return n - 1;
+    if(i >= n) return 0;
+    return i;
+  }
+  function goTo(i){
+    index = clampIndex(i);
+    if(!viewport || !track) return;
+    const w = viewport.clientWidth;
+    track.style.transform = `translateX(${-(w + 14) * index}px)`; // 14 = gap
+    updateDots();
+  }
+  function buildDots(){
+    if(!dotsWrap) return;
+    dotsWrap.innerHTML = '';
+    for(let i=0;i<slidesCount();i++){
+      const d = document.createElement('button');
+      d.className = 'dot';
+      d.type = 'button';
+      d.setAttribute('aria-label', `Перейти к отзыву ${i+1}`);
+      d.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(d);
+    }
+    updateDots();
+  }
+  function updateDots(){
+    if(!dotsWrap) return;
+    [...dotsWrap.children].forEach((d, i) => d.classList.toggle('active', i === index));
+  }
+
+  if(prevBtn) prevBtn.addEventListener('click', () => goTo(index - 1));
+  if(nextBtn) nextBtn.addEventListener('click', () => goTo(index + 1));
+  window.addEventListener('resize', () => goTo(index));
+
+  // Swipe (touch + mouse drag)
+  let startX = 0;
+  let isDown = false;
+  function onStart(x){ isDown = true; startX = x; }
+  function onEnd(x){
+    if(!isDown) return;
+    isDown = false;
+    const dx = x - startX;
+    if(Math.abs(dx) < 40) return;
+    if(dx < 0) goTo(index + 1);
+    else goTo(index - 1);
+  }
+  if(viewport){
+    viewport.addEventListener('touchstart', (e) => onStart(e.touches[0].clientX), {passive:true});
+    viewport.addEventListener('touchend', (e) => onEnd(e.changedTouches[0].clientX));
+    viewport.addEventListener('mousedown', (e) => onStart(e.clientX));
+    viewport.addEventListener('mouseup', (e) => onEnd(e.clientX));
+    viewport.addEventListener('mouseleave', () => { isDown = false; });
+  }
+
+  // ===== LOAD REVIEWS FROM reviews.json + rating =====
+  async function loadReviewsFromJson() {
+    try {
+      const res = await fetch('./reviews.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error('reviews.json not found or not accessible');
+      const data = await res.json();
+
+      const yandexReviewsBtn = document.getElementById('yandexReviewsBtn');
+      const googleReviewsBtn = document.getElementById('googleReviewsBtn');
+      const leaveReviewBtn = document.getElementById('leaveReviewBtn');
+      const leaveReviewGoogle = document.getElementById('leaveReviewGoogle');
+
+      if (yandexReviewsBtn && data?.sources?.yandex?.url) yandexReviewsBtn.href = data.sources.yandex.url;
+      if (googleReviewsBtn && data?.sources?.google?.url) googleReviewsBtn.href = data.sources.google.url;
+
+      // Оставить отзыв: сразу Яндекс (основной), Google — альтернативой
+      if (leaveReviewBtn && yandexReviewsBtn) leaveReviewBtn.href = yandexReviewsBtn.href;
+      if (leaveReviewGoogle && googleReviewsBtn) leaveReviewGoogle.href = googleReviewsBtn.href;
+
+      // Build slides
+      if (!track || !viewport) return;
+      const reviews = Array.isArray(data?.reviews) ? data.reviews : [];
+      track.innerHTML = '';
+
+      const clampRating = (r) => {
+        const x = Number(r);
+        if (Number.isNaN(x)) return 0;
+        return Math.max(0, Math.min(5, x));
+      };
+
+      const formatDate = (iso) => {
+        if (!iso) return '';
+        const [y, m, d] = String(iso).split('-');
+        if (!y || !m || !d) return '';
+        return `${d}.${m}.${y}`;
+      };
+
+      // сортировка по дате (новые сверху), если date есть
+      reviews.sort((a,b) => String(b?.date||'').localeCompare(String(a?.date||'')));
+
+      reviews.forEach((r) => {
+        const name = r?.name ? String(r.name) : 'Клиент';
+        const rating = clampRating(r?.rating);
+        const text = r?.text ? String(r.text) : '';
+        const date = formatDate(r?.date);
+
+        const slide = document.createElement('article');
+        slide.className = 'review-slide';
+        slide.innerHTML = `
+          <div class="review-top">
+            <strong>${escapeHtml(name)}</strong>
+            <span class="review-score"><i class="fa-solid fa-star"></i> ${rating.toFixed(1)}</span>
+          </div>
+          ${date ? `<div style="margin-top:6px; color:var(--muted); font-size:12px;">${date}</div>` : ``}
+          <p>${escapeHtml(text)}</p>
+        `;
+        track.appendChild(slide);
+      });
+
+      // Rating summary
+      const ratingScoreEl = document.getElementById('ratingScore');
+      const ratingSubEl = document.getElementById('ratingSub');
+      const ratingStarsEl = document.getElementById('ratingStars');
+
+      const avg = reviews.length
+        ? (reviews.reduce((s, r) => s + clampRating(r?.rating), 0) / reviews.length)
+        : 0;
+
+      if (ratingScoreEl) ratingScoreEl.textContent = reviews.length ? `${avg.toFixed(1)}/5` : '—';
+      if (ratingSubEl) ratingSubEl.textContent = reviews.length
+        ? `на основе ${reviews.length} отзыв(ов)`
+        : 'пока нет отзывов';
+
+      if (ratingStarsEl) {
+        ratingStarsEl.innerHTML = buildStarsHtml(avg);
+        ratingStarsEl.setAttribute('aria-label', reviews.length ? `Общая оценка ${avg.toFixed(1)} из 5` : 'Нет оценок');
+      }
+
+      buildDots();
+      goTo(0);
+
+    } catch (err) {
+      console.warn('Не удалось загрузить reviews.json:', err);
+      const ratingStarsEl = document.getElementById('ratingStars');
+      const ratingScoreEl = document.getElementById('ratingScore');
+      const ratingSubEl = document.getElementById('ratingSub');
+      if (ratingStarsEl) ratingStarsEl.innerHTML = buildStarsHtml(0);
+      if (ratingScoreEl) ratingScoreEl.textContent = '—';
+      if (ratingSubEl) ratingSubEl.textContent = 'проверь reviews.json (нужен локальный сервер)';
+    }
+  }
+
+  // Simple HTML escape
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  }
+
+  // Build star icons (0..5 with half)
+  function buildStarsHtml(value) {
+    const v = Math.max(0, Math.min(5, Number(value) || 0));
+    const full = Math.floor(v);
+    const frac = v - full;
+    const half = frac >= 0.25 && frac < 0.75 ? 1 : 0;
+    const extraFull = frac >= 0.75 ? 1 : 0;
+
+    const stars = [];
+    for (let i = 0; i < full + extraFull; i++) stars.push('<i class="fa-solid fa-star"></i>');
+    if (half) stars.push('<i class="fa-solid fa-star-half-stroke"></i>');
+    while (stars.length < 5) stars.push('<i class="fa-regular fa-star"></i>');
+    return stars.join('');
+  }
+
+  document.addEventListener('DOMContentLoaded', loadReviewsFromJson);
+</script>
+
+</body>
+</html>
