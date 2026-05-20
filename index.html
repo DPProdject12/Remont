@@ -567,8 +567,10 @@
           <option value="" selected disabled>Выберите…</option>
           <option value="ПК">ПК</option>
           <option value="Ноутбук">Ноутбук</option>
-          <option value="Принтер / МФУ">Принтер / МФУ</option>
+          <option value="Смартфон">Смартфон</option>
+          <option value="Планшет">Планшет</option>
           <option value="Монитор">Монитор</option>
+          <option value="Принтер / МФУ">Принтер / МФУ</option>
           <option value="Периферия">Периферия</option>
           <option value="Другое">Другое</option>
         </select>
@@ -1184,13 +1186,13 @@
             Вид техники
             <select name="deviceType" id="modalDeviceType" required>
               <option value="" selected disabled>Выберите…</option>
-              <option>Телефон / Смартфон</option>
+              <option>ПК</option>
               <option>Ноутбук</option>
-              <option>ПК / Компьютер</option>
-              <option>Видеокарта</option>
-              <option>Монитор</option>
+              <option>Смартфон</option>
               <option>Планшет</option>
-              <option>Smart TV</option>
+              <option>Монитор</option>
+              <option>Принтер / МФУ</option>
+              <option>Периферия</option>
               <option>Другое</option>
             </select>
           </label>
@@ -1222,22 +1224,103 @@
 // ===== КАЛЬКУЛЯТОР =====
 // Все услуги: ключ, название, цена [от, до], для каких устройств доступна
 const ALL_SERVICES = [
-  { key:'diagnostics',  label:'Диагностика',                    price:[500,500],   devices:['ПК','Ноутбук','Монитор','Принтер / МФУ','Периферия','Другое'] },
-  { key:'cooling_clean',label:'Чистка системы охлаждения',      price:[500,500],   devices:['ПК','Ноутбук'] },
-  { key:'paste',        label:'Замена термопасты',               price:[800,800],   devices:['ПК','Ноутбук'] },
-  { key:'drivers',      label:'Установка базовых драйверов',     price:[800,800],   devices:['ПК','Ноутбук'] },
-  { key:'antivirus',    label:'Установка антивируса',            price:[500,500],   devices:['ПК','Ноутбук'] },
-  { key:'apps',         label:'Установка программ',              price:[500,500],   devices:['ПК','Ноутбук'] },
-  { key:'virus_clean',  label:'Удаление вирусов / чистка',      price:[500,500],   devices:['ПК','Ноутбук'] },
-  { key:'os',           label:'Установка Windows',               price:[1000,1000], devices:['ПК','Ноутбук'] },
-  { key:'ssd_upgrade',  label:'Ускорение (SSD вместо HDD)',      price:[500,500],   devices:['ПК','Ноутбук'] },
-  { key:'hdd_replace',  label:'Замена жёсткого диска',           price:[800,800],   devices:['ПК','Ноутбук'] },
-  { key:'ram',          label:'Увеличение ОЗУ',                  price:[300,300],   devices:['ПК','Ноутбук'] },
-  { key:'gpu',          label:'Замена видеокарты',               price:[500,500],   devices:['ПК'] },
-  { key:'cpu',          label:'Замена процессора',               price:[700,700],   devices:['ПК','Ноутбук'] },
-  { key:'psu',          label:'Замена блока питания',            price:[500,500],   devices:['ПК'] },
-  { key:'mb',           label:'Замена материнской платы',        price:[800,800],   devices:['ПК','Ноутбук'] },
-  { key:'case',         label:'Замена корпуса',                  price:[1000,1000], devices:['ПК'] },
+
+  // ПК
+  { key:'diagnostics_pc',   label:'Диагностика',                      price:[500,500],    devices:['ПК','Ноутбук','Монитор','Принтер / МФУ','Периферия','Смартфон','Планшет','Другое'] },
+  { key:'cooling_clean',    label:'Чистка системы охлаждения',         price:[500,800],    devices:['ПК','Ноутбук'] },
+  { key:'paste',            label:'Замена термопасты',                  price:[700,1000],   devices:['ПК','Ноутбук'] },
+  { key:'drivers',          label:'Установка базовых драйверов',        price:[700,800],    devices:['ПК','Ноутбук'] },
+  { key:'antivirus',        label:'Установка антивируса',               price:[500,700],    devices:['ПК','Ноутбук'] },
+  { key:'apps',             label:'Установка программ',                 price:[400,600],    devices:['ПК','Ноутбук'] },
+  { key:'virus_clean',      label:'Удаление вирусов / чистка ПО',      price:[500,1000],   devices:['ПК','Ноутбук'] },
+  { key:'os',               label:'Установка Windows',                  price:[1000,1500],  devices:['ПК','Ноутбук'] },
+  { key:'ssd_upgrade',      label:'Ускорение: замена HDD на SSD',       price:[500,800],    devices:['ПК','Ноутбук'] },
+  { key:'hdd_replace',      label:'Замена жёсткого диска',              price:[700,1000],   devices:['ПК','Ноутбук'] },
+  { key:'ram',              label:'Увеличение ОЗУ',                     price:[300,500],    devices:['ПК','Ноутбук'] },
+  { key:'gpu',              label:'Замена видеокарты',                  price:[500,700],    devices:['ПК'] },
+  { key:'cpu',              label:'Замена процессора',                  price:[700,1000],   devices:['ПК','Ноутбук'] },
+  { key:'psu',              label:'Замена блока питания',               price:[500,800],    devices:['ПК'] },
+  { key:'mb',               label:'Замена материнской платы',           price:[800,1500],   devices:['ПК','Ноутбук'] },
+  { key:'case',             label:'Замена корпуса',                     price:[1000,1500],  devices:['ПК'] },
+  { key:'pc_assemble',      label:'Сборка ПК из комплектующих',         price:[1500,3000],  devices:['ПК'] },
+  { key:'nb_battery',       label:'Замена аккумулятора ноутбука',       price:[700,1200],   devices:['Ноутбук'] },
+  { key:'nb_screen',        label:'Замена экрана ноутбука',             price:[1500,4000],  devices:['Ноутбук'] },
+  { key:'nb_keyboard',      label:'Замена клавиатуры ноутбука',         price:[800,1500],   devices:['Ноутбук'] },
+  { key:'nb_dc',            label:'Замена разъёма питания ноутбука',    price:[700,1200],   devices:['Ноутбук'] },
+
+  // Монитор
+  { key:'mon_diagnostics',  label:'Диагностика монитора',               price:[500,500],    devices:['Монитор'] },
+  { key:'mon_nopicture',    label:'Нет изображения / чёрный экран',     price:[500,2000],   devices:['Монитор'] },
+  { key:'mon_backlight',    label:'Замена подсветки (LED)',              price:[1000,2500],  devices:['Монитор'] },
+  { key:'mon_matrix',       label:'Замена матрицы',                     price:[2000,6000],  devices:['Монитор'] },
+  { key:'mon_psu',          label:'Ремонт блока питания монитора',      price:[700,2000],   devices:['Монитор'] },
+  { key:'mon_caps',         label:'Замена конденсаторов',               price:[500,1500],   devices:['Монитор'] },
+  { key:'mon_connector',    label:'Ремонт / замена разъёма (HDMI/DP)',  price:[600,1500],   devices:['Монитор'] },
+  { key:'mon_buttons',      label:'Ремонт кнопок управления',           price:[400,900],    devices:['Монитор'] },
+  { key:'mon_stand',        label:'Ремонт / замена подставки',          price:[300,800],    devices:['Монитор'] },
+  { key:'mon_setup',        label:'Настройка изображения / калибровка', price:[400,700],    devices:['Монитор'] },
+
+  // Принтер / МФУ
+  { key:'mfu_diagnostics',  label:'Диагностика принтера / МФУ',        price:[500,500],    devices:['Принтер / МФУ'] },
+  { key:'mfu_jam',          label:'Устранение замятия бумаги',          price:[400,800],    devices:['Принтер / МФУ'] },
+  { key:'mfu_head',         label:'Чистка / промывка печатающей головки',price:[500,1500],  devices:['Принтер / МФУ'] },
+  { key:'mfu_cartridge',    label:'Заправка картриджа',                 price:[300,600],    devices:['Принтер / МФУ'] },
+  { key:'mfu_cartridge_r',  label:'Замена картриджа',                   price:[400,800],    devices:['Принтер / МФУ'] },
+  { key:'mfu_drum',         label:'Замена фотобарабана',                price:[600,1500],   devices:['Принтер / МФУ'] },
+  { key:'mfu_roller',       label:'Замена роликов подачи бумаги',       price:[500,1200],   devices:['Принтер / МФУ'] },
+  { key:'mfu_fuser',        label:'Замена термоузла (фьюзера)',         price:[1000,3000],  devices:['Принтер / МФУ'] },
+  { key:'mfu_tray',         label:'Ремонт / замена лотка для бумаги',   price:[400,1200],   devices:['Принтер / МФУ'] },
+  { key:'mfu_setup',        label:'Подключение и настройка (сеть/Wi-Fi)',price:[500,900],   devices:['Принтер / МФУ'] },
+  { key:'mfu_driver',       label:'Установка драйверов принтера',       price:[400,700],    devices:['Принтер / МФУ'] },
+  { key:'mfu_scan',         label:'Ремонт блока сканера',               price:[700,2000],   devices:['Принтер / МФУ'] },
+  { key:'mfu_strip',        label:'Чистка блока сканера / замена ленты',price:[400,900],    devices:['Принтер / МФУ'] },
+
+  // Периферия
+  { key:'per_diagnostics',  label:'Диагностика периферии',              price:[300,500],    devices:['Периферия'] },
+  { key:'per_mouse_btn',    label:'Замена кнопок мыши',                 price:[300,700],    devices:['Периферия'] },
+  { key:'per_mouse_encoder',label:'Замена энкодера колёсика мыши',      price:[300,600],    devices:['Периферия'] },
+  { key:'per_mouse_cable',  label:'Замена кабеля мыши',                 price:[300,600],    devices:['Периферия'] },
+  { key:'per_kb_key',       label:'Замена клавиши / свитча',            price:[200,500],    devices:['Периферия'] },
+  { key:'per_kb_clean',     label:'Чистка клавиатуры',                  price:[300,700],    devices:['Периферия'] },
+  { key:'per_usb_hub',      label:'Ремонт USB-хаба',                    price:[400,900],    devices:['Периферия'] },
+  { key:'per_headset',      label:'Ремонт наушников / гарнитуры',       price:[300,800],    devices:['Периферия'] },
+  { key:'per_webcam',       label:'Ремонт / настройка веб-камеры',      price:[300,700],    devices:['Периферия'] },
+  { key:'per_speaker',      label:'Ремонт колонок / акустики',          price:[400,1000],   devices:['Периферия'] },
+  { key:'per_gamepad',      label:'Ремонт геймпада / джойстика',        price:[400,1000],   devices:['Периферия'] },
+  { key:'per_setup',        label:'Подключение и настройка периферии',  price:[300,600],    devices:['Периферия'] },
+
+  // Смартфон
+  { key:'sm_diagnostics',   label:'Диагностика смартфона',              price:[300,500],    devices:['Смартфон'] },
+  { key:'sm_screen',        label:'Замена экрана / дисплея',            price:[1000,6000],  devices:['Смартфон'] },
+  { key:'sm_glass',         label:'Замена защитного стекла',            price:[500,2000],   devices:['Смартфон'] },
+  { key:'sm_battery',       label:'Замена аккумулятора',                price:[700,2000],   devices:['Смартфон'] },
+  { key:'sm_charge',        label:'Замена разъёма зарядки (Type-C)',    price:[600,1500],   devices:['Смартфон'] },
+  { key:'sm_speaker',       label:'Замена динамика (разговорного)',      price:[500,1500],   devices:['Смартфон'] },
+  { key:'sm_loud',          label:'Замена полифонического динамика',     price:[500,1500],   devices:['Смартфон'] },
+  { key:'sm_mic',           label:'Замена микрофона',                   price:[500,1200],   devices:['Смартфон'] },
+  { key:'sm_camera',        label:'Замена камеры',                      price:[700,3000],   devices:['Смартфон'] },
+  { key:'sm_button',        label:'Ремонт кнопок (питание/громкость)',   price:[400,1200],   devices:['Смартфон'] },
+  { key:'sm_water',         label:'Ремонт после воды',                  price:[1000,3000],  devices:['Смартфон'] },
+  { key:'sm_vibro',         label:'Замена вибромотора',                 price:[500,1200],   devices:['Смартфон'] },
+  { key:'sm_wifi',          label:'Ремонт Wi-Fi / Bluetooth',           price:[700,2000],   devices:['Смартфон'] },
+  { key:'sm_flash',         label:'Перепрошивка / сброс',               price:[700,1500],   devices:['Смартфон'] },
+  { key:'sm_unlock',        label:'Разблокировка / восстановление',     price:[700,2000],   devices:['Смартфон'] },
+  { key:'sm_housing',       label:'Замена корпуса / задней крышки',     price:[500,2000],   devices:['Смартфон'] },
+
+  // Планшет
+  { key:'tab_diagnostics',  label:'Диагностика планшета',               price:[300,500],    devices:['Планшет'] },
+  { key:'tab_screen',       label:'Замена экрана / дисплея',            price:[1500,7000],  devices:['Планшет'] },
+  { key:'tab_glass',        label:'Замена защитного стекла',            price:[700,3000],   devices:['Планшет'] },
+  { key:'tab_battery',      label:'Замена аккумулятора',                price:[800,2500],   devices:['Планшет'] },
+  { key:'tab_charge',       label:'Замена разъёма зарядки',             price:[600,1500],   devices:['Планшет'] },
+  { key:'tab_speaker',      label:'Замена динамика',                    price:[600,1500],   devices:['Планшет'] },
+  { key:'tab_camera',       label:'Замена камеры',                      price:[800,2500],   devices:['Планшет'] },
+  { key:'tab_button',       label:'Ремонт кнопок',                      price:[400,1200],   devices:['Планшет'] },
+  { key:'tab_water',        label:'Ремонт после воды',                  price:[1200,3500],  devices:['Планшет'] },
+  { key:'tab_housing',      label:'Замена корпуса / задней крышки',     price:[700,2500],   devices:['Планшет'] },
+  { key:'tab_flash',        label:'Перепрошивка / сброс',               price:[700,1500],   devices:['Планшет'] },
+  { key:'tab_wifi',         label:'Ремонт Wi-Fi / Bluetooth',           price:[800,2000],   devices:['Планшет'] },
+  { key:'tab_sim',          label:'Ремонт слота SIM-карты',             price:[500,1200],   devices:['Планшет'] },
 ];
 
 function formatRub(n){ return n.toLocaleString('ru-RU') + ' ₽'; }
