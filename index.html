@@ -176,12 +176,13 @@
       box-shadow:var(--shadow); border:var(--border); overflow:hidden;
       transform: translateY(10px); opacity:0;
       transition: transform .25s ease, box-shadow .25s ease, opacity .4s ease;
+      display:flex; flex-direction:column;
     }
     .service-card.reveal{ transform: translateY(0); opacity:1; }
     .service-card:hover{ transform: translateY(-5px); box-shadow:var(--shadow-strong); }
 
     .service-media{
-      position:relative; width:100%; height:140px;
+      position:relative; width:100%; height:160px;
       background:linear-gradient(135deg, rgba(21,101,192,.15), rgba(13,71,161,.25));
       display:flex; align-items:center; justify-content:center;
       overflow:hidden;
@@ -189,26 +190,39 @@
     .service-media-icon{
       font-size:42px; color:rgba(21,101,192,.25);
     }
-    .service-media img{ width:100%; height:100%; object-fit:cover; display:block; }
-    .media-overlay{ position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.35), rgba(0,0,0,0)); }
+    .service-media img{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover; object-position:center;
+      display:block;
+      transition: transform .4s ease;
+    }
+    .service-card:hover .service-media img{ transform: scale(1.05); }
+    .media-overlay{ position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.50) 0%, rgba(0,0,0,.10) 55%, transparent 100%); }
     .media-label{
       position:absolute; bottom:10px; left:12px;
       display:inline-flex; align-items:center; gap:8px;
       padding:7px 11px; border-radius:999px;
-      background:rgba(0,0,0,.42); border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.50); border:1px solid rgba(255,255,255,.18);
       color:#fff; font-weight:800; font-size:11px; backdrop-filter:blur(6px);
     }
 
-    .service-body{ padding:16px 16px 18px; }
+    .service-body{ padding:16px 16px 18px; display:flex; flex-direction:column; flex:1; }
     .service-title{ display:flex; align-items:flex-start; gap:10px; margin-bottom:8px; }
-    .service-title i{ color:var(--blue); margin-top:2px; font-size:17px; width:22px; text-align:center; }
+    .service-title i{ color:var(--blue); margin-top:2px; font-size:17px; width:22px; text-align:center; flex:0 0 auto; }
     .service-title h3{ margin:0; font-size:1em; line-height:1.25; font-weight:800; }
-    .service-body p{ margin:0 0 10px; color:var(--muted); font-size:.93em; }
+    .service-body p{ margin:0 0 6px; color:var(--muted); font-size:.93em; line-height:1.55; }
+    .service-hints{ display:flex; flex-wrap:wrap; gap:5px; margin-top:6px; }
+    .hint-pill{
+      font-size:11px; color:var(--blue-dark); font-weight:700;
+      background:rgba(21,101,192,.07); border:1px solid rgba(21,101,192,.14);
+      padding:3px 9px; border-radius:999px;
+    }
     .price{
       display:flex; align-items:center; justify-content:space-between; gap:10px;
-      margin-top:10px; padding-top:10px; border-top:1px dashed rgba(0,0,0,.10);
+      margin-top:auto; padding-top:12px; border-top:1px dashed rgba(0,0,0,.10);
     }
-    .price strong{ color:var(--blue-dark); font-size:1.06em; font-family:'Unbounded', sans-serif; font-size:.95em; }
+    .price strong{ color:var(--blue-dark); font-family:'Unbounded', sans-serif; font-size:.92em; }
     .tag{ font-size:11px; font-weight:800; color:var(--blue-dark); background:rgba(21,101,192,.08); border:1px solid rgba(21,101,192,.18); padding:5px 10px; border-radius:999px; white-space:nowrap; }
 
     /* ===== WHY ===== */
@@ -551,13 +565,11 @@
         Тип техники
         <select id="calcDevice" required>
           <option value="" selected disabled>Выберите…</option>
-          <option value="Телефон">Телефон / Смартфон</option>
+          <option value="ПК">ПК</option>
           <option value="Ноутбук">Ноутбук</option>
-          <option value="ПК">ПК / Компьютер</option>
-          <option value="Видеокарта">Видеокарта</option>
+          <option value="Принтер / МФУ">Принтер / МФУ</option>
           <option value="Монитор">Монитор</option>
-          <option value="Планшет">Планшет</option>
-          <option value="Smart TV">Smart TV</option>
+          <option value="Периферия">Периферия</option>
           <option value="Другое">Другое</option>
         </select>
       </label>
@@ -565,20 +577,22 @@
         Проблема / услуга
         <select id="calcIssue" required>
           <option value="" selected disabled>Выберите…</option>
-          <option value="display">Замена дисплея / экрана</option>
-          <option value="usb">Замена USB / Type-C разъёма</option>
-          <option value="battery">Замена аккумулятора</option>
-          <option value="gpu_repair">Ремонт видеокарты (ребол)</option>
           <option value="diagnostics">Диагностика</option>
           <option value="cooling_clean">Чистка системы охлаждения</option>
           <option value="paste">Замена термопасты</option>
-          <option value="os">Установка Windows / ОС</option>
-          <option value="virus_clean">Удаление вирусов</option>
-          <option value="data_recovery">Восстановление данных</option>
-          <option value="ssd_upgrade">Ускорение (SSD)</option>
+          <option value="drivers">Установка драйверов</option>
+          <option value="antivirus">Установка антивируса</option>
+          <option value="apps">Установка программ</option>
+          <option value="virus_clean">Удаление вирусов / чистка</option>
+          <option value="os">Установка Windows</option>
+          <option value="ssd_upgrade">Ускорение (SSD вместо HDD)</option>
+          <option value="hdd_replace">Замена диска</option>
           <option value="ram">Увеличение ОЗУ</option>
-          <option value="mb">Ремонт материнской платы</option>
-          <option value="smarttv">Настройка Smart TV</option>
+          <option value="gpu">Замена видеокарты</option>
+          <option value="cpu">Замена процессора</option>
+          <option value="psu">Замена блока питания</option>
+          <option value="mb">Замена материнской платы</option>
+          <option value="case">Замена корпуса</option>
         </select>
       </label>
     </div>
@@ -609,15 +623,20 @@
     </div>
 
     <div class="services">
+
       <article class="service-card">
         <div class="service-media">
           <img src="assets/images/diag1.jpg" alt="Диагностика компьютера">
           <div class="media-overlay"></div>
-          <div class="media-label"><i class="fa-solid fa-magnifying-glass"></i> Фото услуги</div>
+          <div class="media-label"><i class="fa-solid fa-magnifying-glass"></i> Диагностика</div>
         </div>
         <div class="service-body">
           <div class="service-title"><i class="fa-solid fa-stethoscope"></i><h3>Диагностика компьютера</h3></div>
-          <p>Если ваш ПК будет ремонтироваться у нас — диагностика бесплатная. Выявляем неисправность.</p>
+          <p>Полная проверка всех компонентов ПК или ноутбука: материнская плата, процессор, память, накопители, блок питания. Выявляем неисправность и объясняем причину.</p>
+          <div class="service-hints">
+            <span class="hint-pill">ПК и ноутбуки</span>
+            <span class="hint-pill">Бесплатно при ремонте у нас</span>
+          </div>
           <div class="price"><strong>от 500 ₽</strong><span class="tag">Диагностика</span></div>
         </div>
       </article>
@@ -626,11 +645,15 @@
         <div class="service-media">
           <img src="assets/images/zam.jpg" alt="Замена термопасты">
           <div class="media-overlay"></div>
-          <div class="media-label"><i class="fa-solid fa-fan"></i> Фото услуги</div>
+          <div class="media-label"><i class="fa-solid fa-fan"></i> Охлаждение</div>
         </div>
         <div class="service-body">
           <div class="service-title"><i class="fa-solid fa-temperature-half"></i><h3>Замена термопасты</h3></div>
-          <p>Замена термопасты на различных комплектующих по необходимости.</p>
+          <p>Со временем термопаста высыхает и перестаёт отводить тепло — процессор перегревается, компьютер тормозит или выключается. Наносим качественную пасту на CPU, GPU и чипсет.</p>
+          <div class="service-hints">
+            <span class="hint-pill">ПК / ноутбук</span>
+            <span class="hint-pill">Снижает нагрев на 10–20°C</span>
+          </div>
           <div class="price"><strong>от 800 ₽</strong><span class="tag">Охлаждение</span></div>
         </div>
       </article>
@@ -639,11 +662,16 @@
         <div class="service-media">
           <img src="assets/images/video1.png" alt="Замена видеокарты">
           <div class="media-overlay"></div>
-          <div class="media-label"><i class="fa-solid fa-display"></i> Фото услуги</div>
+          <div class="media-label"><i class="fa-solid fa-display"></i> Видеокарта</div>
         </div>
         <div class="service-body">
           <div class="service-title"><i class="fa-solid fa-microchip"></i><h3>Замена видеокарты</h3></div>
-          <p>Подберём видеокарту под ваш запрос (офисная/игровая) и произведём замену.</p>
+          <p>Подберём подходящую видеокарту под ваш бюджет и задачи: офисная работа, графика или игры. Установим, подключим питание, поставим драйверы и проверим стабильность.</p>
+          <div class="service-hints">
+            <span class="hint-pill">Офисная / игровая</span>
+            <span class="hint-pill">Подбор + установка</span>
+            <span class="hint-pill">Только для ПК</span>
+          </div>
           <div class="price"><strong>от 500 ₽</strong><span class="tag">Апгрейд</span></div>
         </div>
       </article>
@@ -652,11 +680,15 @@
         <div class="service-media">
           <img src="assets/images/ram1.jpg" alt="Увеличение оперативной памяти">
           <div class="media-overlay"></div>
-          <div class="media-label"><i class="fa-solid fa-memory"></i> Фото услуги</div>
+          <div class="media-label"><i class="fa-solid fa-memory"></i> ОЗУ</div>
         </div>
         <div class="service-body">
           <div class="service-title"><i class="fa-solid fa-memory"></i><h3>Увеличение оперативной памяти</h3></div>
-          <p>Увеличение или замена оперативной памяти.</p>
+          <p>Мало ОЗУ — частая причина тормозов при работе с браузером, программами, играми. Проверим совместимость, подберём и установим новые планки. Прирост скорости заметен сразу.</p>
+          <div class="service-hints">
+            <span class="hint-pill">ПК / ноутбук</span>
+            <span class="hint-pill">DDR3 / DDR4 / DDR5</span>
+          </div>
           <div class="price"><strong>от 300 ₽</strong><span class="tag">Апгрейд</span></div>
         </div>
       </article>
@@ -665,11 +697,15 @@
         <div class="service-media">
           <img src="assets/images/chistka.jpg" alt="Чистка системы охлаждения">
           <div class="media-overlay"></div>
-          <div class="media-label"><i class="fa-solid fa-wind"></i> Фото услуги</div>
+          <div class="media-label"><i class="fa-solid fa-wind"></i> Профилактика</div>
         </div>
         <div class="service-body">
           <div class="service-title"><i class="fa-solid fa-wind"></i><h3>Чистка системы охлаждения</h3></div>
-          <p>Чистка радиаторов охлаждения различных комплектующих от пыли и загрязнений.</p>
+          <p>Пыль в радиаторах и вентиляторах — главная причина перегрева. Разбираем корпус, продуваем и чистим все радиаторы, вентиляторы, заменяем термопасту при необходимости.</p>
+          <div class="service-hints">
+            <span class="hint-pill">ПК / ноутбук</span>
+            <span class="hint-pill">Рекомендуется раз в год</span>
+          </div>
           <div class="price"><strong>от 500 ₽</strong><span class="tag">Профилактика</span></div>
         </div>
       </article>
@@ -678,11 +714,15 @@
         <div class="service-media">
           <img src="assets/images/draiver1.jpg" alt="Установка базовых драйверов">
           <div class="media-overlay"></div>
-          <div class="media-label"><i class="fa-solid fa-gears"></i> Фото услуги</div>
+          <div class="media-label"><i class="fa-solid fa-gears"></i> Настройка</div>
         </div>
         <div class="service-body">
           <div class="service-title"><i class="fa-solid fa-gears"></i><h3>Установка базовых драйверов</h3></div>
-          <p>Установка необходимых драйверов для работы вашего оборудования.</p>
+          <p>После переустановки Windows часто не работают звук, сеть, USB или дисплей. Устанавливаем все необходимые драйверы: чипсет, видео, аудио, сеть, периферия — и всё настраиваем.</p>
+          <div class="service-hints">
+            <span class="hint-pill">После установки ОС</span>
+            <span class="hint-pill">Все устройства</span>
+          </div>
           <div class="price"><strong>от 800 ₽</strong><span class="tag">Настройка</span></div>
         </div>
       </article>
@@ -691,11 +731,15 @@
         <div class="service-media">
           <img src="assets/images/anti1.jpg" alt="Установка антивируса">
           <div class="media-overlay"></div>
-          <div class="media-label"><i class="fa-solid fa-shield-virus"></i> Фото услуги</div>
+          <div class="media-label"><i class="fa-solid fa-shield-virus"></i> Безопасность</div>
         </div>
         <div class="service-body">
           <div class="service-title"><i class="fa-solid fa-shield-virus"></i><h3>Установка антивируса</h3></div>
-          <p>Защита вашего оборудования от взломов и вредоносных программ.</p>
+          <p>Устанавливаем надёжный антивирус, настраиваем автообновление баз и расписание проверок. Проводим первичное сканирование системы на наличие угроз.</p>
+          <div class="service-hints">
+            <span class="hint-pill">Kaspersky / ESET / Другие</span>
+            <span class="hint-pill">Настройка + проверка</span>
+          </div>
           <div class="price"><strong>от 500 ₽</strong><span class="tag">Безопасность</span></div>
         </div>
       </article>
@@ -704,11 +748,15 @@
         <div class="service-media">
           <img src="assets/images/prog1.jpg" alt="Установка программ">
           <div class="media-overlay"></div>
-          <div class="media-label"><i class="fa-solid fa-puzzle-piece"></i> Фото услуги</div>
+          <div class="media-label"><i class="fa-solid fa-puzzle-piece"></i> ПО</div>
         </div>
         <div class="service-body">
           <div class="service-title"><i class="fa-solid fa-puzzle-piece"></i><h3>Установка программ</h3></div>
-          <p>Установка сторонних программ для комфортного пользования.</p>
+          <p>Установим и настроим любые программы: офисные пакеты, браузеры, архиваторы, мессенджеры, графические редакторы и другое ПО. Всё проверяем и запускаем.</p>
+          <div class="service-hints">
+            <span class="hint-pill">Office / браузеры / графика</span>
+            <span class="hint-pill">Любые программы</span>
+          </div>
           <div class="price"><strong>от 500 ₽</strong><span class="tag">ПО</span></div>
         </div>
       </article>
@@ -717,11 +765,15 @@
         <div class="service-media">
           <img src="assets/images/virus.jpg" alt="Чистка и удаление вирусов">
           <div class="media-overlay"></div>
-          <div class="media-label"><i class="fa-solid fa-bug-slash"></i> Фото услуги</div>
+          <div class="media-label"><i class="fa-solid fa-bug-slash"></i> Вирусы</div>
         </div>
         <div class="service-body">
           <div class="service-title"><i class="fa-solid fa-bug-slash"></i><h3>Чистка и удаление вирусов</h3></div>
-          <p>Программная чистка оборудования от ненужных программ и кешов.</p>
+          <p>Реклама в браузере, медленная работа, странные процессы — признаки заражения. Полностью очищаем систему от вредоносных программ, рекламного ПО, троянов и оптимизируем ОС.</p>
+          <div class="service-hints">
+            <span class="hint-pill">Трояны / рекламное ПО</span>
+            <span class="hint-pill">Оптимизация системы</span>
+          </div>
           <div class="price"><strong>от 500 ₽</strong><span class="tag">Оптимизация</span></div>
         </div>
       </article>
@@ -730,11 +782,15 @@
         <div class="service-media">
           <img src="assets/images/ssd1.jpg" alt="Увеличение скорости работы">
           <div class="media-overlay"></div>
-          <div class="media-label"><i class="fa-solid fa-gauge-high"></i> Фото услуги</div>
+          <div class="media-label"><i class="fa-solid fa-gauge-high"></i> SSD</div>
         </div>
         <div class="service-body">
-          <div class="service-title"><i class="fa-solid fa-gauge-high"></i><h3>Увеличение скорости работы оборудования</h3></div>
-          <p>Замена жёсткого диска на SSD для заметного ускорения.</p>
+          <div class="service-title"><i class="fa-solid fa-gauge-high"></i><h3>Ускорение: SSD вместо HDD</h3></div>
+          <p>Замена старого жёсткого диска на SSD — самый заметный апгрейд для медленного ПК. Windows загружается за 10–15 сек, программы открываются мгновенно. Переносим все данные.</p>
+          <div class="service-hints">
+            <span class="hint-pill">Перенос данных включён</span>
+            <span class="hint-pill">Загрузка за 10–15 сек</span>
+          </div>
           <div class="price"><strong>от 500 ₽</strong><span class="tag">SSD</span></div>
         </div>
       </article>
@@ -743,11 +799,15 @@
         <div class="service-media">
           <img src="assets/images/hdd.jpg" alt="Замена жесткого диска">
           <div class="media-overlay"></div>
-          <div class="media-label"><i class="fa-solid fa-hard-drive"></i> Фото услуги</div>
+          <div class="media-label"><i class="fa-solid fa-hard-drive"></i> Накопитель</div>
         </div>
         <div class="service-body">
           <div class="service-title"><i class="fa-solid fa-hard-drive"></i><h3>Замена жёсткого диска</h3></div>
-          <p>Если компьютер начал медленнее работать — эта услуга точно для вас.</p>
+          <p>Щелчки, скрежет, долгая загрузка или «синий экран» — признаки умирающего HDD. Заменяем диск, восстанавливаем данные по возможности, устанавливаем ОС с нуля или переносим систему.</p>
+          <div class="service-hints">
+            <span class="hint-pill">HDD / SSD / NVMe</span>
+            <span class="hint-pill">Перенос данных</span>
+          </div>
           <div class="price"><strong>от 800 ₽</strong><span class="tag">Накопители</span></div>
         </div>
       </article>
@@ -756,11 +816,15 @@
         <div class="service-media">
           <img src="assets/images/mat1.jpg" alt="Замена материнской платы">
           <div class="media-overlay"></div>
-          <div class="media-label"><i class="fa-solid fa-diagram-project"></i> Фото услуги</div>
+          <div class="media-label"><i class="fa-solid fa-diagram-project"></i> Материнская плата</div>
         </div>
         <div class="service-body">
           <div class="service-title"><i class="fa-solid fa-diagram-project"></i><h3>Замена материнской платы</h3></div>
-          <p>Материнская плата отвечает за все рабочие процессы вашего ПК.</p>
+          <p>Материнская плата — основа всего ПК. Не включается, не видит USB или оперативную память — скорее всего дело в ней. Подберём совместимую плату, переустановим компоненты и настроим BIOS.</p>
+          <div class="service-hints">
+            <span class="hint-pill">Подбор совместимой</span>
+            <span class="hint-pill">Настройка BIOS</span>
+          </div>
           <div class="price"><strong>от 800 ₽</strong><span class="tag">Ремонт</span></div>
         </div>
       </article>
@@ -769,11 +833,15 @@
         <div class="service-media">
           <img src="assets/images/bp.jpg" alt="Замена блока питания">
           <div class="media-overlay"></div>
-          <div class="media-label"><i class="fa-solid fa-plug-circle-bolt"></i> Фото услуги</div>
+          <div class="media-label"><i class="fa-solid fa-plug-circle-bolt"></i> Питание</div>
         </div>
         <div class="service-body">
           <div class="service-title"><i class="fa-solid fa-plug-circle-bolt"></i><h3>Замена блока питания</h3></div>
-          <p>Замена неисправного БП или увеличение мощности блока питания.</p>
+          <p>ПК не включается или внезапно выключается — часто виноват БП. Диагностируем, подбираем блок питания нужной мощности и заменяем. Подходит и для апгрейда под новое железо.</p>
+          <div class="service-hints">
+            <span class="hint-pill">Только для ПК</span>
+            <span class="hint-pill">Подбор мощности</span>
+          </div>
           <div class="price"><strong>от 500 ₽</strong><span class="tag">Питание</span></div>
         </div>
       </article>
@@ -782,11 +850,15 @@
         <div class="service-media">
           <img src="assets/images/cpu.jpg" alt="Замена процессора">
           <div class="media-overlay"></div>
-          <div class="media-label"><i class="fa-solid fa-microchip"></i> Фото услуги</div>
+          <div class="media-label"><i class="fa-solid fa-microchip"></i> Процессор</div>
         </div>
         <div class="service-body">
           <div class="service-title"><i class="fa-solid fa-microchip"></i><h3>Замена процессора</h3></div>
-          <p>Замена неисправного процессора или апгрейд.</p>
+          <p>Заменим неисправный процессор или поможем с апгрейдом на более мощный. Проверим совместимость с материнской платой, заменим термопасту и проведём стресс-тест после установки.</p>
+          <div class="service-hints">
+            <span class="hint-pill">Intel / AMD</span>
+            <span class="hint-pill">Стресс-тест после установки</span>
+          </div>
           <div class="price"><strong>от 700 ₽</strong><span class="tag">Апгрейд</span></div>
         </div>
       </article>
@@ -795,11 +867,16 @@
         <div class="service-media">
           <img src="assets/images/OC.jpg" alt="Установка операционной системы">
           <div class="media-overlay"></div>
-          <div class="media-label"><i class="fa-brands fa-windows"></i> Фото услуги</div>
+          <div class="media-label"><i class="fa-brands fa-windows"></i> ОС</div>
         </div>
         <div class="service-body">
           <div class="service-title"><i class="fa-brands fa-windows"></i><h3>Установка операционной системы</h3></div>
-          <p>Установка Windows 10/11 и других поколений.</p>
+          <p>Чистая установка Windows 10 или 11. Разбиваем диск, устанавливаем ОС, базовые драйверы и необходимые программы. При желании переносим ваши файлы на новый раздел.</p>
+          <div class="service-hints">
+            <span class="hint-pill">Windows 10 / 11</span>
+            <span class="hint-pill">Драйверы в комплекте</span>
+            <span class="hint-pill">Перенос файлов</span>
+          </div>
           <div class="price"><strong>от 1000 ₽</strong><span class="tag">ОС</span></div>
         </div>
       </article>
@@ -808,11 +885,15 @@
         <div class="service-media">
           <img src="assets/images/korpus.jpg" alt="Замена корпуса">
           <div class="media-overlay"></div>
-          <div class="media-label"><i class="fa-solid fa-computer"></i> Фото услуги</div>
+          <div class="media-label"><i class="fa-solid fa-computer"></i> Сборка</div>
         </div>
         <div class="service-body">
           <div class="service-title"><i class="fa-solid fa-computer"></i><h3>Замена корпуса</h3></div>
-          <p>Замена корпуса компьютера.</p>
+          <p>Старый корпус треснул, плохо вентилируется или просто надоел? Перенесём все комплектующие в новый корпус, правильно проложим кабели и убедимся, что всё крепко сидит на своих местах.</p>
+          <div class="service-hints">
+            <span class="hint-pill">Только для ПК</span>
+            <span class="hint-pill">Укладка кабелей</span>
+          </div>
           <div class="price"><strong>от 1000 ₽</strong><span class="tag">Сборка</span></div>
         </div>
       </article>
@@ -1138,31 +1219,96 @@
 </div>
 
 <script>
-// ===== PRICE RANGES =====
-const PRICE_RANGES = {
-  display:[1000,5000], usb:[500,1500], battery:[700,2500], gpu_repair:[1000,5000],
-  diagnostics:[0,1000], cooling_clean:[500,1500], paste:[500,1000],
-  os:[1000,2000], virus_clean:[500,1500], data_recovery:[1500,8000],
-  ssd_upgrade:[500,1000], ram:[300,800], mb:[1500,6000], smarttv:[500,1500]
-};
+// ===== КАЛЬКУЛЯТОР =====
+// Все услуги: ключ, название, цена [от, до], для каких устройств доступна
+const ALL_SERVICES = [
+  { key:'diagnostics',  label:'Диагностика',                    price:[500,500],   devices:['ПК','Ноутбук','Монитор','Принтер / МФУ','Периферия','Другое'] },
+  { key:'cooling_clean',label:'Чистка системы охлаждения',      price:[500,500],   devices:['ПК','Ноутбук'] },
+  { key:'paste',        label:'Замена термопасты',               price:[800,800],   devices:['ПК','Ноутбук'] },
+  { key:'drivers',      label:'Установка базовых драйверов',     price:[800,800],   devices:['ПК','Ноутбук'] },
+  { key:'antivirus',    label:'Установка антивируса',            price:[500,500],   devices:['ПК','Ноутбук'] },
+  { key:'apps',         label:'Установка программ',              price:[500,500],   devices:['ПК','Ноутбук'] },
+  { key:'virus_clean',  label:'Удаление вирусов / чистка',      price:[500,500],   devices:['ПК','Ноутбук'] },
+  { key:'os',           label:'Установка Windows',               price:[1000,1000], devices:['ПК','Ноутбук'] },
+  { key:'ssd_upgrade',  label:'Ускорение (SSD вместо HDD)',      price:[500,500],   devices:['ПК','Ноутбук'] },
+  { key:'hdd_replace',  label:'Замена жёсткого диска',           price:[800,800],   devices:['ПК','Ноутбук'] },
+  { key:'ram',          label:'Увеличение ОЗУ',                  price:[300,300],   devices:['ПК','Ноутбук'] },
+  { key:'gpu',          label:'Замена видеокарты',               price:[500,500],   devices:['ПК'] },
+  { key:'cpu',          label:'Замена процессора',               price:[700,700],   devices:['ПК','Ноутбук'] },
+  { key:'psu',          label:'Замена блока питания',            price:[500,500],   devices:['ПК'] },
+  { key:'mb',           label:'Замена материнской платы',        price:[800,800],   devices:['ПК','Ноутбук'] },
+  { key:'case',         label:'Замена корпуса',                  price:[1000,1000], devices:['ПК'] },
+];
+
 function formatRub(n){ return n.toLocaleString('ru-RU') + ' ₽'; }
 
-function updateCalc(){
-  const dev = document.getElementById('calcDevice').value;
-  const issue = document.getElementById('calcIssue').value;
-  const priceEl = document.getElementById('calcPrice');
-  const noteEl = document.getElementById('calcNote');
-  const btn = document.getElementById('calcToRequest');
+const calcDevice = document.getElementById('calcDevice');
+const calcIssue  = document.getElementById('calcIssue');
+const calcPrice  = document.getElementById('calcPrice');
+const calcNote   = document.getElementById('calcNote');
+const calcBtn    = document.getElementById('calcToRequest');
 
-  if(!dev || !issue){ priceEl.textContent = 'Выберите параметры'; btn.disabled = true; return; }
-  const range = PRICE_RANGES[issue];
-  if(!range){ priceEl.textContent = 'Уточнить у мастера'; btn.disabled = false; return; }
-  priceEl.textContent = range[0] === range[1] ? formatRub(range[0]) : `${formatRub(range[0])} — ${formatRub(range[1])}`;
-  noteEl.textContent = 'Цена ориентировочная. Точную стоимость назовём после диагностики.';
-  btn.disabled = false;
+// При смене типа техники — перестраиваем список проблем
+function rebuildIssues(){
+  const dev = calcDevice.value;
+  const prevKey = calcIssue.value;
+
+  calcIssue.innerHTML = '<option value="" disabled>Выберите…</option>';
+
+  const available = dev ? ALL_SERVICES.filter(s => s.devices.includes(dev)) : ALL_SERVICES;
+  available.forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s.key;
+    opt.textContent = s.label;
+    calcIssue.appendChild(opt);
+  });
+
+  // Восстановить предыдущий выбор если он ещё доступен
+  if(prevKey && available.find(s => s.key === prevKey)){
+    calcIssue.value = prevKey;
+  } else {
+    calcIssue.value = '';
+  }
+
+  updatePrice();
 }
-document.getElementById('calcDevice').addEventListener('change', updateCalc);
-document.getElementById('calcIssue').addEventListener('change', updateCalc);
+
+function updatePrice(){
+  const dev      = calcDevice.value;
+  const issueKey = calcIssue.value;
+
+  if(!dev){
+    calcPrice.textContent = 'Сначала выберите технику';
+    calcNote.textContent  = '';
+    calcBtn.disabled = true;
+    return;
+  }
+  if(!issueKey){
+    calcPrice.textContent = 'Выберите проблему / услугу';
+    calcNote.textContent  = '';
+    calcBtn.disabled = true;
+    return;
+  }
+
+  const svc = ALL_SERVICES.find(s => s.key === issueKey);
+  if(!svc){
+    calcPrice.textContent = 'Уточнить у мастера';
+    calcNote.textContent  = 'Позвоните нам или оставьте заявку — назовём точную цену.';
+    calcBtn.disabled = false;
+    return;
+  }
+
+  const [lo, hi] = svc.price;
+  calcPrice.textContent = lo === hi ? `от ${formatRub(lo)}` : `${formatRub(lo)} — ${formatRub(hi)}`;
+  calcNote.textContent  = 'Цена ориентировочная и может зависеть от модели и сложности. Точную стоимость назовём после диагностики.';
+  calcBtn.disabled = false;
+}
+
+calcDevice.addEventListener('change', rebuildIssues);
+calcIssue.addEventListener('change', updatePrice);
+
+// Инициализация — заполнить все услуги без фильтра
+rebuildIssues();
 
 // ===== MODAL =====
 const overlay = document.getElementById('requestModal');
@@ -1187,17 +1333,19 @@ document.getElementById('requestForm').addEventListener('submit', function(e){
 
 // Calc → modal
 document.getElementById('calcToRequest').addEventListener('click', function(){
-  const dev = document.getElementById('calcDevice').value;
-  const issueKey = document.getElementById('calcIssue').value;
-  const issueLabel = document.getElementById('calcIssue').options[document.getElementById('calcIssue').selectedIndex]?.text || '';
-  const dType = document.getElementById('modalDeviceType');
+  const dev      = calcDevice.value;
+  const issueKey = calcIssue.value;
+  const issueLabel = calcIssue.options[calcIssue.selectedIndex]?.text || '';
+  const svc = ALL_SERVICES.find(s => s.key === issueKey);
+
+  const dType  = document.getElementById('modalDeviceType');
   const dShort = document.getElementById('modalProblemShort');
-  const dProb = document.getElementById('modalProblem');
+  const dProb  = document.getElementById('modalProblem');
+
   if(dType && dev) dType.value = dev;
   if(dShort && issueLabel) dShort.value = issueLabel;
   if(dProb && dev && issueLabel){
-    const range = PRICE_RANGES[issueKey];
-    const p = range ? (range[0]===range[1] ? formatRub(range[0]) : `${formatRub(range[0])} — ${formatRub(range[1])}`) : 'уточнить';
+    const p = svc ? `от ${formatRub(svc.price[0])}` : 'уточнить';
     dProb.value = `Техника: ${dev}\nУслуга: ${issueLabel}\nОриентир по цене: ${p}\n\nОписание:`;
   }
   openModal();
@@ -1274,8 +1422,7 @@ function buildStars(v){
 document.getElementById('ratingStars').innerHTML = buildStars(4.8);
 buildDots();
 
-// Calc init
-updateCalc();
+
 </script>
 </body>
 </html>
